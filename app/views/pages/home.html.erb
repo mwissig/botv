@@ -20,7 +20,7 @@
       </button>
     <span class="text-black"><% if user.status %>
     <% if user.status.brief %>
-  <%= user.status.brief %> | Last updated
+  <%= user.status.brief %> &middot; Last updated
   <%= user.status.updated_at.strftime("%b %e, %Y") %>
   <% end %>
   <% end %></span>
