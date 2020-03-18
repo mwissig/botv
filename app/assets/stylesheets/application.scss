@@ -10,16 +10,63 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
  */
 @import "bootstrap";
+@import "rails_bootstrap_forms";
 
 html {
-color: white;
-font-family: sans-serif;
+  color: white;
+  font-family: sans-serif;
 }
 
-
 body {
-    background-color: black !important;
+  background-color: black !important;
+}
+
+h5 {
+  display: inline !important;
+}
+
+.bgcolor0 {
+  background-color: rgb(133, 133, 133) !important;
+}
+
+.bgcolor1 {
+  background-color: rgb(194, 255, 179) !important;
+}
+
+.bgcolor2 {
+  background-color: rgb(221, 255, 179) !important;
+}
+
+.bgcolor3 {
+  background-color: rgb(240, 255, 179) !important;
+}
+
+.bgcolor4 {
+  background-color: rgb(255, 240, 179) !important;
+}
+
+.bgcolor5 {
+  background-color: rgb(255, 231, 179) !important;
+}
+
+.bgcolor6 {
+  background-color: rgb(255, 231, 179) !important;
+}
+
+.bgcolor7 {
+  background-color: rgb(255, 213, 179) !important;
+}
+
+.bgcolor8 {
+  background-color: rgb(255, 185, 170) !important;
+}
+
+.bgcolor9 {
+  background-color: rgb(255, 178, 165) !important;
+}
+
+.bgcolor10 {
+  background-color: rgb(255, 157, 157) !important;
 }

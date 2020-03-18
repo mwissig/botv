@@ -1,7 +1,7 @@
 rails <!DOCTYPE html>
 <html>
   <head>
-    <title>Borona</title>
+    <title>Bo User Status</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -23,6 +23,13 @@ rails <!DOCTYPE html>
         <span class="nav-item">
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-link' %>
       </span>
+      <span class="nav-item">
+        <% if current_user.status %>
+              <%= link_to 'Edit Status', edit_user_status_path(current_user, current_user.status) %>
+              <% else %>
+                <%= link_to 'New Status', new_status_path %>
+<% end %>
+    </span>
       <span class="nav-item">
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
       </span>

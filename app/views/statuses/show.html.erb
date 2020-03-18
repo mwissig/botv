@@ -1,19 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Brief:</strong>
-  <%= @status.brief %>
-</p>
+<h2>My Status</h2>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @status.rating %>
-</p>
+<div class="card bg-secondary
+<% if current_user.status %>
+      <% if current_user.status.rating %>
+     bgcolor<%= current_user.status.rating %>
+    <% end %>
+    <% end %>">
+  <div class="card-header" id="heading<%= current_user.id %>">
+        <h5 class="card-title">
+        <%= current_user.name %>
 
-<p>
-  <strong>Long:</strong>
-  <%= @status.long %>
-</p>
+      </h5>
+    <span class="text-black"><% if current_user.status %>
+    <% if current_user.status.brief %>
+  <%= current_user.status.brief %>
+  <% end %>
+  <% end %></span>
+  </div>
+
+  <div id="collapse<%= current_user.id %>" class="" aria-labelledby="heading<%= current_user.id %>" data-parent="#allcurrent_users">
+    <div class="card-body">
+      <p class="card-text">
+        <% if current_user.status %>
+        <% if current_user.status.long %>
+      <%= simple_format(current_user.status.long, {}, sanitize: false)%>
+      <% end %>
+      <% end %>
+    </p>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
 <%= link_to 'Back', statuses_path %>

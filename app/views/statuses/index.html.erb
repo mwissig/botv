@@ -1,30 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Statuses</h1>
+<h2>My Status</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Brief</th>
-      <th>Rating</th>
-      <th>Long</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @statuses.each do |status| %>
-      <tr>
-        <td><%= status.brief %></td>
-        <td><%= status.rating %></td>
-        <td><%= status.long %></td>
-        <td><%= link_to 'Show', status %></td>
-        <td><%= link_to 'Edit', edit_status_path(status) %></td>
-        <td><%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="card bg-secondary
+<% if current_user.status %>
+      <% if current_user.status.rating %>
+     bgcolor<%= current_user.status.rating %>
     <% end %>
-  </tbody>
-</table>
+    <% end %>">
+  <div class="card-header" id="heading<%= current_user.id %>">
+        <h5 class="card-title">
+        <%= current_user.name %>
+
+      </h5>
+
+    <span class="text-black"><% if current_user.status %>
+    <% if current_user.status.brief %>
+  <%= current_user.status.brief %>
+  <% end %>
+  <% end %></span>
+  </div>
+
+
+    <div class="card-body">
+      <p class="card-text">
+        <% if current_user.status %>
+        <% if current_user.status.long %>
+      <%= simple_format(current_user.status.long, {}, sanitize: false)%>
+      <% end %>
+      <% end %>
+    </p>
+    </div>
+  </div>
+
+
+<% if current_user.status %>
+        <%= link_to 'Edit', edit_user_status_path(current_user, current_user.status) %>
+    <% end %>
 
 <br>
 

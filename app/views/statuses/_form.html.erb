@@ -1,4 +1,5 @@
-<%= form_with(model: status, local: true) do |form| %>
+<div class="card bg-secondary">
+<%= bootstrap_form_with(model: status, local: true) do |form| %>
   <% if status.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(status.errors.count, "error") %> prohibited this status from being saved:</h2>
@@ -13,22 +14,22 @@
     <%= form.hidden_field :user_id, value: current_user.id, required: true %>
 
   <div class="field">
-    <%= form.label :brief %>
-    <%= form.text_field :brief %>
+    <%= form.label :brief, 'A brief description of your situation (max 120 characters)' %>
+    <%= form.text_field :brief, :maximum => 120 %>
   </div>
 
   <div class="field">
-    <%= form.label :rating %>
+    <%= form.label :rating, 'Rate your level of safety/security from 1(good) to 10(bad), enter 0 to not disclose. This will change the color of your row.' %>
     <%= form.number_field :rating, min: 0, max: 10 %>
   </div>
 
   <div class="field">
-    <%= form.label :long %>
+    <%= form.label :long, 'Write as much as you want here' %>
     <%= form.cktext_area :long %>
-    <%# cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' } %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+</div>

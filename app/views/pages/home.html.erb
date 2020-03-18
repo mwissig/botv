@@ -2,21 +2,37 @@
 <div class="accordion" id="allusers">
 <% if @users %>
 <% @users.each do |user| %>
-<div class="card bg-dark text-white">
+<div class="card bg-secondary
+<% if user.status %>
+      <% if user.status.rating %>
+     bgcolor<%= user.status.rating %>
+    <% end %>
+    <% end %>">
   <div class="card-header" id="heading<%= user.id %>">
-    <h2 class="mb-0">
-      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" aria-expanded="false" aria-controls="collapse<%= user.id %>">
+      <button class="btn btn-link collapsed
+
+
+      " type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" aria-expanded="false" aria-controls="collapse<%= user.id %>">
         <h5 class="card-title">
         <%= user.name %>
+
       </h5>
       </button>
-    </h2>
+    <span class="text-black"><% if user.status %>
+    <% if user.status.brief %>
+  <%= user.status.brief %>
+  <% end %>
+  <% end %></span>
   </div>
 
   <div id="collapse<%= user.id %>" class="collapse" aria-labelledby="heading<%= user.id %>" data-parent="#allusers">
     <div class="card-body">
       <p class="card-text">
-      <%# simple_format(user.status.long, {}, sanitize: false)%>
+        <% if user.status %>
+        <% if user.status.long %>
+      <%= simple_format(user.status.long, {}, sanitize: false)%>
+      <% end %>
+      <% end %>
     </p>
     </div>
   </div>
@@ -24,3 +40,4 @@
 
 <% end %>
 <% end %>
+<%= will_paginate @users %>

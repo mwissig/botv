@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
 gem 'ckeditor'
 gem 'simple_form'
+gem 'bootstrap_form'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment
