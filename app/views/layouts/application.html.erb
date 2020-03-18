@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+rails <!DOCTYPE html>
 <html>
   <head>
     <title>Borona</title>
@@ -7,15 +7,43 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag Ckeditor.cdn_url %>
   </head>
 
   <body>
+
+      <nav class="navbar navbar-dark bg-dark">
+          <span class="nav-item active">
+        <%= link_to 'Home', root_path, :class => 'navbar-link' %>
+      </span>
+      <% if user_signed_in? %>
+    <span class="navbar-text">
+        Logged in as <strong><%= current_user.name %></strong>.
+      </span>
+        <span class="nav-item">
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-link' %>
+      </span>
+      <span class="nav-item">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
+      </span>
+      <% else %>
+      <span class="nav-item">
+        <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
+      </span>
+        <span class="nav-item">
+        <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
+      </span>
+      <% end %>
+</nav>
+
+
     <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
+
     <%= yield %>
   </body>
 </html>

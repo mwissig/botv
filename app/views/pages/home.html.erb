@@ -1,2 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="accordion" id="allusers">
+<% if @users %>
+<% @users.each do |user| %>
+<div class="card bg-dark text-white">
+  <div class="card-header" id="heading<%= user.id %>">
+    <h2 class="mb-0">
+      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" aria-expanded="false" aria-controls="collapse<%= user.id %>">
+        <h5 class="card-title">
+        <%= user.name %>
+      </h5>
+      </button>
+    </h2>
+  </div>
+
+  <div id="collapse<%= user.id %>" class="collapse" aria-labelledby="heading<%= user.id %>" data-parent="#allusers">
+    <div class="card-body">
+      <p class="card-text">
+      <%# simple_format(user.status.long, {}, sanitize: false)%>
+    </p>
+    </div>
+  </div>
+</div>
+
+<% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brief:</strong>
+  <%= @status.brief %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @status.rating %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @status.long %>
+</p>
+
+<%= link_to 'Edit', edit_status_path(@status) %> |
+<%= link_to 'Back', statuses_path %>
