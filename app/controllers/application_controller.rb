@@ -13,4 +13,14 @@ class ApplicationController < ActionController::Base
           devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password])
           devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :password, :current_password])
       end
+
+before_action :set_raven_context
+
+private
+
+def set_raven_context
+  Raven.user_context(id: session[:current_user_id]) # or anything else in session
+  Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+end
+
 end

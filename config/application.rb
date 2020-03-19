@@ -17,3 +17,7 @@ module Borona
     # the framework and any gems in your application.
   end
 end
+
+Raven.configure do |config|
+  config.dsn = 'https://9134665251094f6b89bfa6983c7b6913:b8c2bdc12f7e4474bc40d1389c116493@sentry.io/5166663'
+end
