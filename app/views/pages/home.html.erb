@@ -35,11 +35,16 @@
 <% end %>
 
     <span class="text-black"><% if user.status %>
-    <% if user.status.brief %>
-  &middot; <%= user.status.brief %> &middot; Last updated
-  <%= user.status.updated_at.strftime("%b %e, %Y") %>
+    <% if !user.status.brief.blank? %>
+  &middot; <%= user.status.brief %>
   <% end %>
-  <% end %></span>
+<% end %>
+
+<% if user.status %>
+&middot; Last updated
+<%= user.status.updated_at.strftime("%b %e, %Y") %>
+  <% end %>
+</span>
   </div>
 
   <% if user.status %>
