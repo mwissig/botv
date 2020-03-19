@@ -7,12 +7,14 @@ rails <!DOCTYPE html>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <%= javascript_include_tag Ckeditor.cdn_url %>
   </head>
 
   <body>
 
-      <nav class="navbar navbar-dark bg-dark">
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+
           <span class="nav-item active">
         <%= link_to 'Home', root_path, :class => 'navbar-link' %>
       </span>
@@ -41,6 +43,7 @@ rails <!DOCTYPE html>
         <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
       </span>
       <% end %>
+
 </nav>
 
 
