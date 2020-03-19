@@ -9,15 +9,31 @@
     <% end %>
     <% end %>">
   <div class="card-header" id="heading<%= user.id %>">
-      <button class="btn btn-link collapsed
 
+    <% if user.status %>
+    <% if !user.status.long.blank? %>
 
-      " type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" aria-expanded="false" aria-controls="collapse<%= user.id %>">
-        <h5 class="card-title">
-        <%= user.name %>
-
+      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" aria-expanded="false" aria-controls="collapse<%= user.id %>">
+        <h5 class="card-title buttonlink">
+          <%= user.name %>
       </h5>
       </button>
+
+<% else %>
+
+  <h5 class="card-title bump">
+    <%= user.name %>
+  </h5>
+
+<% end %>
+
+<% else %>
+
+  <h5 class="card-title bump">
+    <%= user.name %>
+  </h5>
+<% end %>
+
     <span class="text-black"><% if user.status %>
     <% if user.status.brief %>
   <%= user.status.brief %> &middot; Last updated
@@ -26,17 +42,22 @@
   <% end %></span>
   </div>
 
+  <% if user.status %>
+  <% if user.status.long %>
+
   <div id="collapse<%= user.id %>" class="collapse" aria-labelledby="heading<%= user.id %>" data-parent="#allusers">
     <div class="card-body">
       <p class="card-text">
-        <% if user.status %>
-        <% if user.status.long %>
+
       <%= simple_format(user.status.long, {}, sanitize: false)%>
-      <% end %>
-      <% end %>
+
     </p>
     </div>
   </div>
+
+  <% end %>
+  <% end %>
+
 </div>
 
 <% end %>

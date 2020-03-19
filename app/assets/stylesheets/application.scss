@@ -25,11 +25,19 @@ a {
 
 .navbar-text {
     color: rgb(129, 129, 129) !important;
+
+}
+.bump {
+    margin-left: 0.5em;
 }
 
+.card-title {
+  color: rgb(32, 32, 32) !important;
+}
 
-button {
-  color: rgb(52, 52, 52) !important;
+.buttonlink {
+    color: rgb(0, 7, 87) !important;
+    text-decoration: underline;
 }
 
 body {
@@ -39,6 +47,7 @@ body {
 
 h5 {
   display: inline !important;
+
 }
 
 .bgcolor0 {
