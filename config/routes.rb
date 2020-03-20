@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'recent' => 'pages#recent'
+  get 'rank/asc' => 'pages#asc'
+  get 'rank/desc' => 'pages#desc'
   resources :statuses
   root 'pages#home'
   devise_for :users, controllers: {

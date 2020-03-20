@@ -1,0 +1,32 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+
+    <span class="nav-item">
+  <%= link_to 'Home', root_path, :class => 'navbar-link' %>
+</span>
+<% if user_signed_in? %>
+<span class="navbar-text">
+  Logged in as <strong><%= current_user.name %></strong>.
+</span>
+  <span class="nav-item">
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-link' %>
+</span>
+<span class="nav-item">
+  <% if current_user.status %>
+        <%= link_to 'Edit Status', edit_user_status_path(current_user, current_user.status) %>
+        <% else %>
+          <%= link_to 'New Status', new_status_path %>
+<% end %>
+</span>
+<span class="nav-item">
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
+</span>
+<% else %>
+<span class="nav-item">
+  <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
+</span>
+  <span class="nav-item">
+  <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
+</span>
+<% end %>
+
+</nav>

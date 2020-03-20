@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark bg-secondary">
+
+    <span class="nav-item">
+  <%= link_to 'Alphabetical', root_path, :class => 'navbar-link nav2' %>
+</span>
+
+<span class="nav-item">
+  <%= link_to "Recently Updated", recent_path, :class => 'nav-link nav2'  %>
+</span>
+
+<span class="nav-item">
+  <%= link_to "Best to Worst", rank_asc_path, :class => 'nav-link nav2'  %>
+</span>
+  <span class="nav-item">
+  <%= link_to "Worst to Best", rank_desc_path, :class => 'nav-link nav2'  %>
+</span>
+
+
+</nav>
