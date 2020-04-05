@@ -1,0 +1,54 @@
+<div class="vidplayergrid">
+  <div>
+      <%= @video.embed_code.html_safe %>
+  </div>
+  <div>
+
+    <p id="notice"><%= notice %></p>
+    <h4>
+      <%= @video.title %>
+    </h4>
+
+      Posted by <%= @video.user.name %>
+
+
+    <p>
+      <%= @video.description %>
+    </p>
+
+
+
+
+
+
+
+    <p>
+      <strong>Tags:</strong>
+      <%= @video.tags %>
+    </p>
+
+    <p>
+      <strong>Category1:</strong>
+      <%= @video.category1 %>
+    </p>
+
+    <p>
+      <strong>Category2:</strong>
+      <%= @video.category2 %>
+    </p>
+
+    <p>
+      <i class="fas fa-lightbulb gbulb"></i>
+      <%= @video.upbulbs %>
+    </p>
+
+    <p>
+      <i class="far fa-lightbulb rbulb"></i>
+      <%= @video.downbulbs %>
+    </p>
+
+
+    <%= link_to 'Back', videos_path %>
+
+  </div>
+</div>

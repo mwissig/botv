@@ -33,6 +33,11 @@ gem 'ckeditor'
 gem 'simple_form'
 gem 'bootstrap_form'
 gem 'sentry-raven'
+gem 'gemcutter', '~> 0.7.1'
+gem 'vimeo'
+gem "figaro"
+gem "video_info"
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment

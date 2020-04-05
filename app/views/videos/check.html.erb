@@ -1,0 +1,11 @@
+<% if @dupes.first != nil %>
+  <% @dupes.each do |video| %>
+  Duplicate video found
+    <img src="<%= video.thumbnail %>">
+  <% end %>
+<% else %>
+no dupes found
+<div><img src="<%= @query.thumbnail_large %>"></div>
+<div><%= render 'form', video: @video %></div>
+
+<%  end %>

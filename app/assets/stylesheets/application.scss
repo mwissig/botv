@@ -33,9 +33,6 @@ a {
     color: rgb(129, 129, 129) !important;
 
 }
-.bump {
-    margin-left: 0.5em;
-}
 
 .card-title {
   color: rgb(32, 32, 32) !important;
@@ -45,7 +42,12 @@ a {
     color: rgb(0, 7, 87) !important;
     text-decoration: underline;
 }
-
+.rbulb {
+  color: red;
+}
+.gbulb {
+  color: rgb(128, 255, 0);
+}
 body {
   margin-top: 2em;
   margin-bottom: 3em;
@@ -56,49 +58,69 @@ h5 {
   display: inline !important;
 
 }
-
-.bgcolor0 {
-  background-color: rgb(133, 133, 133) !important;
+iframe
+{
+ display: block;
+ width: 100%;
+ border: none;
+ overflow-y: auto;
+ overflow-x: hidden;
+ margin: 0px;
+padding: 0px;
+height: 100%;
+border: none;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
-.bgcolor1 {
-  background-color: rgb(194, 255, 179) !important;
+.leftbar {
+    background-color: rgb(80, 80, 80);
+    color: black;
+    border-right: 2px solid black;
+    padding: 5px;
 }
 
-.bgcolor2 {
-  background-color: rgb(221, 255, 179) !important;
+.submitform {
+    background-color: rgb(80, 80, 80);
+    color: black;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 5px;
 }
 
-.bgcolor3 {
-  background-color: rgb(240, 255, 179) !important;
+#allvideos {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: rgb(80, 80, 80);
+  margin: 0 auto;
 }
 
-.bgcolor4 {
-  background-color: rgb(255, 240, 179) !important;
+.vidgrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
-
-.bgcolor5 {
-  background-color: rgb(255, 231, 179) !important;
+.vidgrid div {
+  padding: 5px;
 }
-
-.bgcolor6 {
-  background-color: rgb(255, 231, 179) !important;
+.thumbnailContainer img {
+  width: 100%;
+  border: 2px solid white;
 }
-
-.bgcolor7 {
-  background-color: rgb(255, 213, 179) !important;
+.vidplayergrid {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: calc(100vh - 5em);
+  max-height: 100vh;
 }
-
-.bgcolor8 {
-  background-color: rgb(255, 185, 170) !important;
-}
-
-.bgcolor9 {
-  background-color: rgb(255, 178, 165) !important;
-}
-
-.bgcolor10 {
-  background-color: rgb(255, 157, 157) !important;
+.vidplayergrid div:nth-child(2) {
+  padding: .5em;
+  background-color: rgb(80, 80, 80);
 }
 #pagination {
   margin: 0 auto;

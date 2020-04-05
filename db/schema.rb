@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_201938) do
+ActiveRecord::Schema.define(version: 2020_04_05_173438) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "body"
+    t.integer "parent_id"
+    t.string "parent_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.string "brief"
@@ -32,6 +41,25 @@ ActiveRecord::Schema.define(version: 2020_03_18_201938) do
     t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "id_code"
+    t.string "provider"
+    t.string "title"
+    t.integer "duration"
+    t.text "description"
+    t.string "thumbnail"
+    t.string "embed_url"
+    t.string "embed_code"
+    t.string "tags"
+    t.string "category1"
+    t.string "category2"
+    t.integer "upbulbs"
+    t.integer "downbulbs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

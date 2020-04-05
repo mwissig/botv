@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def home
     @users = User.all.order("name ASC").paginate(:page => params[:page], :per_page => 20)
+    @video = Video.new
+    @videos = Video.all
   end
 
   def asc

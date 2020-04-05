@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  id_code: MyString
+  provider: MyString
+  title: MyString
+  duration: 1
+  description: MyText
+  thumbnail: MyString
+  embed_url: MyString
+  embed_code: MyString
+  tags: MyString
+  category1: MyString
+  category2: MyString
+  upbulbs: 1
+  downbulbs: 1
+
+two:
+  user_id: 1
+  id_code: MyString
+  provider: MyString
+  title: MyString
+  duration: 1
+  description: MyText
+  thumbnail: MyString
+  embed_url: MyString
+  embed_code: MyString
+  tags: MyString
+  category1: MyString
+  category2: MyString
+  upbulbs: 1
+  downbulbs: 1

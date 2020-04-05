@@ -1,0 +1,53 @@
+<div class="submitform">
+<%= form_with(model: video, local: true) do |form| %>
+  <% if video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :id_code, value: @query.video_id %>
+    <%= form.hidden_field :provider, value: @query.provider %>
+    <%= form.hidden_field :thumbnail, value: @query.thumbnail_medium %>
+    <%= form.hidden_field :embed_url, value: @query.embed_url %>
+    <%= form.hidden_field :embed_code, value: @query.embed_code %>
+    <%= form.hidden_field :duration, value: @query.duration %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, value: @query.title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, value: @query.description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tags %>
+    <%= form.text_field :tags %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category1 %>
+    <%= form.text_field :category1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category2 %>
+    <%= form.text_field :category2 %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

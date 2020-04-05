@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Videos</h1>
+
+<% video = VideoInfo.new('https://vimeo.com/76979871') %>
+<img src="<%= video.thumbnail_small %>"><br>
+<h2><%= video.title %></h2>
+<p><%= video.description %></p>
+<%= video.embed_code.html_safe %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Id code</th>
+      <th>Provider</th>
+      <th>Title</th>
+      <th>Duration</th>
+      <th>Description</th>
+      <th>Thumbnail</th>
+      <th>Embed url</th>
+      <th>Embed code</th>
+      <th>Tags</th>
+      <th>Category1</th>
+      <th>Category2</th>
+      <th>Upbulbs</th>
+      <th>Downbulbs</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.user_id %></td>
+        <td><%= video.id_code %></td>
+        <td><%= video.provider %></td>
+        <td><%= video.title %></td>
+        <td><%= video.duration %></td>
+        <td><%= video.description %></td>
+        <td><%= video.thumbnail %></td>
+        <td><%= video.embed_url %></td>
+        <td><%= video.embed_code %></td>
+        <td><%= video.tags %></td>
+        <td><%= video.category1 %></td>
+        <td><%= video.category2 %></td>
+        <td><%= video.upbulbs %></td>
+        <td><%= video.downbulbs %></td>
+        <td><%= link_to 'Show', video %></td>
+        <td><%= link_to 'Edit', edit_video_path(video) %></td>
+        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video', new_video_path %>
