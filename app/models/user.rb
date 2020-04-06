@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_one :status, dependent: :destroy
   has_many :videos, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bulbs, dependent: :destroy
 end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
     resources :comments do
       resources :comments
+        resources :bulbs
     end
   get 'videos/check'
   get 'videos/index'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   get 'videos/show'
     resources :videos do
       resources :comments
+        resources :bulbs
     end
   get 'recent' => 'pages#recent'
   get 'rank/asc' => 'pages#asc'
@@ -20,9 +23,6 @@ Rails.application.routes.draw do
   }
   resources :users do
     resources :statuses
-    resources :videos do
-      resources :comments
-    end
 end
 end
 

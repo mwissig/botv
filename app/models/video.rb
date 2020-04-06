@@ -1,6 +1,8 @@
 class Video < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :parent
+  has_many :bulbs, as: :bulbable
+    validates :user_id, presence: true
   validates :id_code, presence: true
   validates :provider, presence: true
   validates :title, presence: true

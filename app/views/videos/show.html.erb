@@ -39,16 +39,22 @@
 
     <p>
       <i class="fas fa-lightbulb gbulb"></i>
-      <%= @video.upbulbs %>
+      <%# @video.bulbs.where(color: "green").count %>
     </p>
 
     <p>
       <i class="far fa-lightbulb rbulb"></i>
-      <%= @video.downbulbs %>
+      <%# @video.bulbs.where(color: "red").count  %>
     </p>
 
 
     <%= link_to 'Back', videos_path %>
 
   </div>
+</div>
+<div class="comments">
+  <%= render 'comments/form', comment: @comment %>
+
+<%= render partial: 'comments/comment', collection: @video.comments %>
+
 </div>

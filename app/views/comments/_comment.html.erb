@@ -1,0 +1,18 @@
+<div class="commentslayer">
+  <div class="comment">
+  <%= comment.body.html_safe %> - <%= comment.user.name %> at <%= comment.created_at.strftime("%l:%M%P on %B %e, %Y") %>
+   <i class="fas fa-reply" onclick="expandReply(<%= comment.id %>)"></i> </div>
+    <div id="commentreply<%= comment.id %>" class="collapsed">
+  <%= form_for [comment, Comment.new] do |form| %>
+    <%= form.text_area :body, placeholder: 'Write a reply'%>
+    <br/>
+      <%= form.submit "Reply"  %>
+      <% end %>
+    </div>
+
+
+      <%= render partial: 'comments/comment', collection: comment.comments %>
+
+
+
+</div>

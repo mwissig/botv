@@ -1,19 +1,32 @@
 <div id="allvideos">
+
 <% @videos.each do |video| %>
+<div class="viddiv">
+  <div class="title">           <%= link_to(video) do %>
+
+        <h4><%= video.title.truncate(75, omission: '...') %></h4>
+        <% end %> </div>
+
+<div>
 <div id="vid<%= video.id %>" class="vidgrid">
+
+
+
   <div class="thumbnailContainer">
     <%= link_to(video) do %>
     <img src="<%= video.thumbnail %>">
     <% end %>
   </div>
   <div>
-        <%= link_to(video) do %>
-    <h4><%= video.title.truncate(75, omission: '...') %></h4>
-        <% end %>
+
     <p><%= video.description.truncate(150, omission: '...') %></p>
     <%= video.category1 %> - <%= video.category2 %><br>
     <%= video.user.name %>
   </div>
+</div>
+
+
+</div>
 </div>
 <% end %>
 </div>

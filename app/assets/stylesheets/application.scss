@@ -58,6 +58,11 @@ h5 {
   display: inline !important;
 
 }
+
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
 iframe
 {
  display: block;
@@ -91,19 +96,47 @@ border: none;
     margin: 0 auto;
     padding: 5px;
 }
-
+.comments {
+  background-color: rgb(227, 227, 227);
+  color: black;
+  width: 100%;
+}
+.comments li:nth-child(even) {
+    background-color: rgb(213, 213, 213);
+}
+.comments ul {
+  list-style: none;
+}
+.collapsed {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: height .5s;
+}
+.expanded {
+  visibility: visible;
+  height: auto;
+}
 #allvideos {
   display: grid;
-  grid-template-columns: 50% 50%;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
   background-color: rgb(80, 80, 80);
   margin: 0 auto;
 }
-
+.viddiv {
+  border: 2px solid black;
+}
 .vidgrid {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 .vidgrid div {
+  padding: 5px;
+}
+.title {
+  background-color: rgb(98, 98, 98);
+  text-align: center;
   padding: 5px;
 }
 .thumbnailContainer img {
@@ -121,6 +154,29 @@ border: none;
 .vidplayergrid div:nth-child(2) {
   padding: .5em;
   background-color: rgb(80, 80, 80);
+}
+.commentsnest {
+}
+.commentslayer {
+  margin-left: .5em;
+  border-left: 1px solid black;
+  padding-left: .5em;
+}
+.comment {
+  border-bottom: 1px solid gray;
+}
+textarea {
+  height: 3em;
+  width: 100%;
+  padding: .5em;
+}
+input[type=submit] {
+  background-color: rgb(80, 80, 80);
+  color: white;
+  border: none;
+  margin: 0 auto;
+  border-radius: 3px;
+  padding: 5px 10px;
 }
 #pagination {
   margin: 0 auto;

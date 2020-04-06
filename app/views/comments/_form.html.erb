@@ -1,34 +1,18 @@
-<%= form_with(model: comment, local: true) do |form| %>
+<%= form_with(model: [@video, comment], local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
+      <div class="commentsnest" id="allcomments">
       <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div clas><%= message %></li>
       <% end %>
-      </ul>
+    </div>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.number_field :parent_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :parent_type %>
-    <%= form.text_field :parent_type %>
+    <%= form.text_area :body, placeholder: 'Write a comment' %>
   </div>
 
   <div class="actions">

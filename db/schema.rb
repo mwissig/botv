@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_05_173438) do
+ActiveRecord::Schema.define(version: 2020_04_06_154910) do
+
+  create_table "bulbs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "bulbable_id"
+    t.string "color"
+    t.string "bulbable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -56,8 +65,6 @@ ActiveRecord::Schema.define(version: 2020_04_05_173438) do
     t.string "tags"
     t.string "category1"
     t.string "category2"
-    t.integer "upbulbs"
-    t.integer "downbulbs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

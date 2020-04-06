@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :find_parent, only: :create
 
   # GET /comments
   # GET /comments.json
@@ -24,18 +25,12 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @parent.comments.build(comment_params)
-    @parent.save
 
-    respond_to do |format|
-      if @parent.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    @comment = @parent.comments.new comment_params
+    @comment.user_id = current_user.id
+    @comment.save
+        redirect_back(fallback_location: root_path)
+
   end
 
   # PATCH/PUT /comments/1
@@ -73,11 +68,11 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:body)
     end
 
-    def find_parent
-  if params[:comment_id]
-    @parent = Comment.find_by_id(params[:comment_id])
-  elsif params[:video_id]
-    @parent = Video.find_by_id(params[:video_id])
+  def find_parent
+    if params[:comment_id]
+      @parent = Comment.find_by_id(params[:comment_id])
+    elsif params[:video_id]
+      @parent = Video.find_by_id(params[:video_id])
+    end
   end
-end
 end

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bulb.user_id %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @bulb.parent_id %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @bulb.color %>
+</p>
+
+<p>
+  <strong>Parent type:</strong>
+  <%= @bulb.parent_type %>
+</p>
+
+<%= link_to 'Edit', edit_bulb_path(@bulb) %> |
+<%= link_to 'Back', bulbs_path %>

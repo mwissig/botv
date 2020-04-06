@@ -1,0 +1,25 @@
+<%= form_with(model: [bulbable, bulb], local: true) do |form| %>
+  <% if bulb.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bulb.errors.count, "error") %> prohibited this bulb from being saved:</h2>
+
+      <ul>
+      <% bulb.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color, value: "green" %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

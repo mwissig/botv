@@ -18,3 +18,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+var saved_ids = [];
+
+function expandReply(id) {
+  var i;
+  for (i = 0; i < saved_ids.length; i++) {
+      document.getElementById('commentreply' + saved_ids[i]).classList.remove("expanded");
+  }
+  saved_ids = [];
+  document.getElementById('commentreply' + id).classList.toggle("expanded");
+  saved_ids.push(id);
+}
