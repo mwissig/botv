@@ -1,7 +1,40 @@
 <div class="commentslayer">
+
   <div class="comment">
-  <%= comment.body.html_safe %> - <%= comment.user.name %> at <%= comment.created_at.strftime("%l:%M%P on %B %e, %Y") %>
-   <i class="fas fa-reply" onclick="expandReply(<%= comment.id %>)"></i> </div>
+<% @gb = comment.bulbs.where(color: "green").count %>
+<% @rb = comment.bulbs.where(color: "red").count %>
+
+    <%if (@gb >= 5 && @rb < 5) || (@rb >= 5 && @gb >= 5 && (@gb / @rb >= 2)) %>
+
+      <div class="greenlighted">
+
+    <% elsif (@rb >= 5 && @gb < 5) || (@gb >= 5 && @rb >= 5 && (@rb / @gb >= 2)) %>
+
+      <div class="redlighted">
+
+    <% elsif @rb >= 5 && @gb >= 5 %>
+
+      <div class="yellowlighted">
+
+    <% else %>
+      <div>
+    <% end %>
+
+
+    <b><%= comment.user.name %></b> at <%= comment.created_at.strftime("%l:%M%P on %B %e, %Y") %><br>
+  <%= comment.body %><br>
+  <div class="bulbs inline">
+  <%= render 'bulbs/form', bulbable: comment, bulb: @bulb, color: "green" %>
+
+  <%= render 'bulbs/form', bulbable: comment, bulb: @bulb, color: "red" %>
+</div>
+<div class="inline">
+
+   <i class="fas fa-reply" onclick="expandReply(<%= comment.id %>)"></i>
+ </div>
+</div>
+
+
     <div id="commentreply<%= comment.id %>" class="collapsed">
   <%= form_for [comment, Comment.new] do |form| %>
     <%= form.text_area :body, placeholder: 'Write a reply'%>

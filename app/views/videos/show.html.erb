@@ -36,19 +36,10 @@
       <strong>Category2:</strong>
       <%= @video.category2 %>
     </p>
-
-    <p>
-      <i class="fas fa-lightbulb gbulb"></i>
-      <%# @video.bulbs.where(color: "green").count %>
-    </p>
-
-    <p>
-      <i class="far fa-lightbulb rbulb"></i>
-      <%# @video.bulbs.where(color: "red").count  %>
-    </p>
-
-
-    <%= link_to 'Back', videos_path %>
+  <div class="bulbs inline">
+<%= render 'bulbs/form', bulbable: @video, bulb: @bulb, color: "green" %>
+<%= render 'bulbs/form', bulbable: @video, bulb: @bulb, color: "red" %>
+</div>
 
   </div>
 </div>

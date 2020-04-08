@@ -25,17 +25,10 @@ class BulbsController < ApplicationController
   # POST /bulbs
   # POST /bulbs.json
   def create
-    @bulb = Bulb.new(bulb_params)
-
-    respond_to do |format|
-      if @bulb.save
-        format.html { redirect_to @bulb, notice: 'Bulb was successfully created.' }
-        format.json { render :show, status: :created, location: @bulb }
-      else
-        format.html { render :new }
-        format.json { render json: @bulb.errors, status: :unprocessable_entity }
-      end
-    end
+    @bulb = @bulbable.bulbs.new bulb_params
+    @bulb.user_id = current_user.id
+    @bulb.save
+        redirect_back(fallback_location: root_path)
   end
 
   # PATCH/PUT /bulbs/1

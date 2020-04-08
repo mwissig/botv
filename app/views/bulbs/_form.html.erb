@@ -12,14 +12,14 @@
   <% end %>
 
 
-  <div class="field">
-    <%= form.label :color %>
-    <%= form.text_field :color, value: "green" %>
-  </div>
+
+    <%= form.hidden_field :color, value: color %>
 
 
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+<%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+  <i class="fas fa-lightbulb <%= color %>"></i>   <%= bulbable.bulbs.where(color: color).count %>
+    <% end %>
+
 <% end %>

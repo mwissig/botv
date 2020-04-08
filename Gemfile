@@ -37,6 +37,7 @@ gem 'gemcutter', '~> 0.7.1'
 gem 'vimeo'
 gem "figaro"
 gem "video_info"
+gem 'httparty'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

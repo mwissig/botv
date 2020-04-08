@@ -22,7 +22,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, value: @query.title %>
+    <%= form.text_field :title, value: @title %>
   </div>
 
   <div class="field">
@@ -31,18 +31,14 @@
   </div>
 
   <div class="field">
-    <%= form.label :tags %>
+    <%= form.label :tags, "Separate tags with commas" %>
     <%= form.text_field :tags %>
   </div>
 
   <div class="field">
-    <%= form.label :category1 %>
-    <%= form.text_field :category1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category2 %>
-    <%= form.text_field :category2 %>
+    <%= form.label :category1, "Categories" %>
+    <%= form.select :category1, options_for_select(@categories) %>
+    <%= form.select :category2, options_for_select(@categories) %>
   </div>
 
 

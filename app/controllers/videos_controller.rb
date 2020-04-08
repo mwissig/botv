@@ -11,6 +11,7 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
         @comment = Comment.new
+        @bulb = Bulb.new
   end
 
   # GET /videos/new
@@ -23,10 +24,56 @@ class VideosController < ApplicationController
   end
 
   def check
+    @categories = [
+      "ASMR",
+      "Accidents & Explosions",
+      "Advertisements",
+      "Animals",
+      "Animation",
+      "Arts",
+      "Business",
+      "Clips",
+      "Crime",
+      "Dance",
+      "Dashcam",
+      "Economics",
+      "Educational",
+      "Fashion",
+      "Food",
+      "Full-length",
+      "Health",
+      "Humor",
+      "I Made This",
+      "Memes",
+      "Military",
+      "Movies",
+      "Music",
+      "Music Video",
+      "Nerds",
+      "News & Politics",
+      "Performance",
+      "Religion",
+      "Science & Tech",
+      "Short Films",
+      "Sports",
+      "Stunts",
+      "TV",
+      "Toys & Games",
+      "Trailers",
+      "Video Games"
+    ]
     @videos = Video.all
     @video = Video.new
     @url = params[:url]
     @query = VideoInfo.new(@url)
+    if @query.provider == "YouTube"
+
+#  response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + @query.video_id + "&fields=items(snippet(title))&key=" + ENV['youtube_key'])
+response = "YouTube"
+      @title = response
+    else
+      @title = @query.title
+    end
     @dupes = @videos.where("provider = ? and id_code = ?", @query.provider, @query.video_id)
   end
 

@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     @users = User.all.order("name ASC").paginate(:page => params[:page], :per_page => 20)
     @video = Video.new
     @videos = Video.all
+    @bulb = Bulb.new
   end
 
   def asc

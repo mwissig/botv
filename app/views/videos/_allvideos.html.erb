@@ -2,9 +2,9 @@
 
 <% @videos.each do |video| %>
 <div class="viddiv">
-  <div class="title">           <%= link_to(video) do %>
+  <div class="title">           <%= link_to(video, alt: video.title)  do %>
 
-        <h4><%= video.title.truncate(75, omission: '...') %></h4>
+        <h4><%= video.title.truncate_words(8).truncate(405) %></h4>
         <% end %> </div>
 
 <div>
@@ -14,14 +14,23 @@
 
   <div class="thumbnailContainer">
     <%= link_to(video) do %>
-    <img src="<%= video.thumbnail %>">
+    <img src="<%= video.thumbnail %>"><br>
+
     <% end %>
+    <div class="bulbs inline">
+  <%= render 'bulbs/form', bulbable: video, bulb: @bulb, color: "green" %>
+  <%= render 'bulbs/form', bulbable: video, bulb: @bulb, color: "red" %>
+</div><br>
+    <%= video.category1 %> - <%= video.category2 %><br>
+    <%= video.user.name %>
   </div>
   <div>
 
-    <p><%= video.description.truncate(150, omission: '...') %></p>
-    <%= video.category1 %> - <%= video.category2 %><br>
-    <%= video.user.name %>
+    <p>
+
+
+      <%= video.description.truncate_words(30).truncate(180) %></p>
+
   </div>
 </div>
 
