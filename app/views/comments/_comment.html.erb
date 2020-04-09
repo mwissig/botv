@@ -22,18 +22,35 @@
 
 
     <b><%= comment.user.name %></b> at <%= comment.created_at.strftime("%l:%M%P on %B %e, %Y") %><br>
-  <%= comment.body %><br>
-  <div class="bulbs inline">
-  <%= render 'bulbs/form', bulbable: comment, bulb: @bulb, color: "green" %>
+<%= link_hashtags(comment.body).html_safe %><br>
 
+  <div class="bulbs inline">
+    <% if Bulb.where("user_id = ? and bulbable_type = ? and bulbable_id = ?", current_user.id, "Comment", comment.id).exists? %>
+
+    <%= render 'bulbs/disabled', bulbable: comment, color: "green" %>
+    <%= render 'bulbs/disabled', bulbable: comment, color: "red" %>
+    <% else %>
+  <%= render 'bulbs/form', bulbable: comment, bulb: @bulb, color: "green" %>
   <%= render 'bulbs/form', bulbable: comment, bulb: @bulb, color: "red" %>
+<% end %>
+<button class="bulbs inline" onclick="showBulbers('comment',<%= comment.id %>)">?</button>
 </div>
 <div class="inline">
 
    <i class="fas fa-reply" onclick="expandReply(<%= comment.id %>)"></i>
  </div>
 </div>
-
+<div class="bulbers collapsed" id="commentbulbers<%= comment.id %>">
+  green:
+  <% greenbulbers(comment).each do |bulber| %>
+  <span class="bulber"><%= bulber.name %></span>
+  <% end %>
+  <br>
+  red:
+  <% redbulbers(comment).each do |bulber| %>
+  <span class="bulber"><%= bulber.name %></span>
+  <% end %>
+</div>
 
     <div id="commentreply<%= comment.id %>" class="collapsed">
   <%= form_for [comment, Comment.new] do |form| %>

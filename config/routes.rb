@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'bans/mod'
+  get 'bans/index'
+
+  get 'users/show'
+  get 'videos/tags'
     resources :comments do
       resources :comments
         resources :bulbs
@@ -23,6 +28,7 @@ Rails.application.routes.draw do
   }
   resources :users do
     resources :statuses
+    resources :permissions
 end
 end
 

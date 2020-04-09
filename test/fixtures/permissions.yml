@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  is_admin: false
+  is_mod: false
+  can_post_video: false
+  can_comment: false
+  can_bulb: false
+  video_ban_end: 2020-04-08 19:10:48
+  comment_ban_end: 2020-04-08 19:10:48
+  bulb_ban_end: 2020-04-08 19:10:48
+
+two:
+  user_id: 1
+  is_admin: false
+  is_mod: false
+  can_post_video: false
+  can_comment: false
+  can_bulb: false
+  video_ban_end: 2020-04-08 19:10:48
+  comment_ban_end: 2020-04-08 19:10:48
+  bulb_ban_end: 2020-04-08 19:10:48

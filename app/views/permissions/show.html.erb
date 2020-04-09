@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @permission.user_id %>
+</p>
+
+<p>
+  <strong>Is admin:</strong>
+  <%= @permission.is_admin %>
+</p>
+
+<p>
+  <strong>Is mod:</strong>
+  <%= @permission.is_mod %>
+</p>
+
+<p>
+  <strong>Can post video:</strong>
+  <%= @permission.can_post_video %>
+</p>
+
+<p>
+  <strong>Can comment:</strong>
+  <%= @permission.can_comment %>
+</p>
+
+<p>
+  <strong>Can bulb:</strong>
+  <%= @permission.can_bulb %>
+</p>
+
+<p>
+  <strong>Video ban end:</strong>
+  <%= @permission.video_ban_end %>
+</p>
+
+<p>
+  <strong>Comment ban end:</strong>
+  <%= @permission.comment_ban_end %>
+</p>
+
+<p>
+  <strong>Bulb ban end:</strong>
+  <%= @permission.bulb_ban_end %>
+</p>
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>

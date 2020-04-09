@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_154910) do
+ActiveRecord::Schema.define(version: 2020_04_08_231048) do
 
   create_table "bulbs", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 2020_04_06_154910) do
     t.text "body"
     t.integer "parent_id"
     t.string "parent_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "is_admin", default: false
+    t.boolean "is_mod", default: false
+    t.boolean "can_post_video", default: true
+    t.boolean "can_comment", default: true
+    t.boolean "can_bulb", default: true
+    t.datetime "video_ban_end"
+    t.datetime "comment_ban_end"
+    t.datetime "bulb_ban_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

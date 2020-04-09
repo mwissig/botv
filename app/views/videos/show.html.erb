@@ -3,13 +3,13 @@
       <%= @video.embed_code.html_safe %>
   </div>
   <div>
-
-    <p id="notice"><%= notice %></p>
+    <div class="title full">
     <h4>
       <%= @video.title %>
     </h4>
+  </div>
 
-      Posted by <%= @video.user.name %>
+      <p>Posted by <%= @video.user.name %> on <%= @video.created_at.strftime("%B %e, %Y") %></p>
 
 
     <p>
@@ -17,28 +17,42 @@
     </p>
 
 
-
-
+<p>
+    <span class="category"><%= @video.category1 %></span><span class="category"><%= @video.category2 %></span>
+  </p>
 
 
 
     <p>
-      <strong>Tags:</strong>
-      <%= @video.tags %>
+      <% @tags.each do |tag| %>
+      <span class="tag"> <%= link_to tag, videos_tags_path(query: tag) %> </span>
+      <% end %>
     </p>
 
-    <p>
-      <strong>Category1:</strong>
-      <%= @video.category1 %>
-    </p>
 
-    <p>
-      <strong>Category2:</strong>
-      <%= @video.category2 %>
-    </p>
   <div class="bulbs inline">
+    <p>
+      <% if Bulb.where("user_id = ? and bulbable_type = ? and bulbable_id = ?", current_user.id, "Video", @video.id).exists? %>
+
+      <%= render 'bulbs/disabled', bulbable: @video, color: "green" %>
+      <%= render 'bulbs/disabled', bulbable: @video, color: "red" %>
+      <% else %>
 <%= render 'bulbs/form', bulbable: @video, bulb: @bulb, color: "green" %>
 <%= render 'bulbs/form', bulbable: @video, bulb: @bulb, color: "red" %>
+<% end %>
+<button class="bulbs inline" onclick="showBulbers('video',<%= @video.id %>)">?</button>
+</p>
+</div>
+<div class="bulbers collapsed" id="videobulbers<%= @video.id %>">
+  green:
+  <% greenbulbers(@video).each do |bulber| %>
+  <span class="bulber"><%= bulber.name %></span>
+  <% end %>
+  <br>
+  red:
+  <% redbulbers(@video).each do |bulber| %>
+  <span class="bulber"><%= bulber.name %></span>
+  <% end %>
 </div>
 
   </div>

@@ -30,3 +30,15 @@ function expandReply(id) {
   document.getElementById('commentreply' + id).classList.toggle("expanded");
   saved_ids.push(id);
 }
+
+function showBulbers(type, id) {
+      var i;
+    saved_ids = [];
+
+      for (i = 0; i < saved_ids.length; i++) {
+        document.getElementById('comment' + 'bulbers' + saved_ids[i]).classList.remove("expanded");
+      }
+    document.getElementById(type + 'bulbers' + id).classList.toggle("expanded");
+  saved_ids.push(id);
+
+}

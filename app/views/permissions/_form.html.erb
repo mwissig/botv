@@ -1,0 +1,62 @@
+<%= form_with(model: permission, local: true) do |form| %>
+  <% if permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_admin %>
+    <%= form.check_box :is_admin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_mod %>
+    <%= form.check_box :is_mod %>
+  </div>
+
+  <div class="field">
+    <%= form.label :can_post_video %>
+    <%= form.check_box :can_post_video %>
+  </div>
+
+  <div class="field">
+    <%= form.label :can_comment %>
+    <%= form.check_box :can_comment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :can_bulb %>
+    <%= form.check_box :can_bulb %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_ban_end %>
+    <%= form.datetime_select :video_ban_end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment_ban_end %>
+    <%= form.datetime_select :comment_ban_end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bulb_ban_end %>
+    <%= form.datetime_select :bulb_ban_end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

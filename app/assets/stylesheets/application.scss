@@ -44,6 +44,18 @@ a {
     color: rgb(0, 7, 87) !important;
     text-decoration: underline;
 }
+.tag {
+  padding: 5px;
+  background-color: black;
+  border-radius: 5px;
+  margin: 3px;
+}
+.category {
+  padding: 5px;
+  background-color: white;
+  margin: 3px;
+  font-weight: bold;
+}
 .red {
   color: red;
 }
@@ -69,11 +81,16 @@ background-color: rgb(198, 255, 175);
 .bulbs form {
   display: inline;
 }
-.bulbs button {
-  background-color: transparent;
+.bulbs button, .bulbs span {
+  background-color: white;
   color: black;
   padding: 3px 5px;
   border: 1px solid black;
+}
+.bulbs span {
+background-color: rgb(210, 210, 210);
+border-radius: 3px;
+margin: 3px;
 }
 body {
   margin-top: 2em;
@@ -168,6 +185,12 @@ border: none;
   height: 2em;
   overflow: hidden;
 }
+.full {
+  background-color: rgb(154, 154, 154) !important;
+  text-align: left;
+  height: auto;
+  overflow: auto;
+}
 .thumbnailContainer img {
   width: 100%;
   border: 2px solid white;
@@ -181,8 +204,10 @@ border: none;
   max-height: 100vh;
 }
 .vidplayergrid div:nth-child(2) {
-  padding: .5em;
   background-color: rgb(80, 80, 80);
+}
+.vidplayergrid p {
+    padding: .5em;
 }
 .commentsnest {
 }

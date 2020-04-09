@@ -12,6 +12,7 @@ class VideosController < ApplicationController
   def show
         @comment = Comment.new
         @bulb = Bulb.new
+        @tags = @video.tags.split(",")
   end
 
   # GET /videos/new
@@ -75,6 +76,13 @@ response = "YouTube"
       @title = @query.title
     end
     @dupes = @videos.where("provider = ? and id_code = ?", @query.provider, @query.video_id)
+  end
+
+  def tags
+    @tag = params[:query]
+    @videos = Video.where("tags like ?", "%#{@tag}%")
+    @comment = Comment.new
+    @bulb = Bulb.new
   end
 
   # POST /videos
