@@ -1,2 +1,7 @@
-<h1>Bans#mod</h1>
-<p>Find me in app/views/bans/mod.html.erb</p>
+<div class="box">
+  <div class="modgrid">
+<% @users.each do |user| %>
+<%= render 'permissions/form', user: user %><hr>
+<% end %>
+</div>
+</div>

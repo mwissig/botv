@@ -1,3 +1,5 @@
+<% if current_user.permission.can_comment == true %>
+
 <%= form_with(model: [@video, comment], local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
@@ -12,10 +14,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.text_area :body, placeholder: 'Write a comment' %>
+    <%= form.text_area :body, placeholder: 'Write a comment. URLs are converted into links. Allowed HTML tags: <a href="url">links</a> <b> <strong> <em> <i> <s> <small>' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% else %>
+You are banned from commenting until <%= current_user.permission.comment_ban_end.strftime("%B %e, %Y") %> for:<br> <%= current_user.permission.reason_for_ban %>
 <% end %>

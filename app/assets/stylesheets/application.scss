@@ -13,27 +13,57 @@
  */
 @import "bootstrap";
 @import "rails_bootstrap_forms";
+@import "bootstrap-datepicker";
 
 html {
   color: white;
   font-family: sans-serif;
   font-size: .9em;
   line-height: .7em;
+  background: rgba(82,82,82,1);
+  background: -moz-linear-gradient(left, rgba(82,82,82,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(82,82,82,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(82,82,82,1)), color-stop(25%, rgba(0,0,0,1)), color-stop(75%, rgba(0,0,0,1)), color-stop(100%, rgba(82,82,82,1)));
+  background: -webkit-linear-gradient(left, rgba(82,82,82,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(82,82,82,1) 100%);
+  background: -o-linear-gradient(left, rgba(82,82,82,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(82,82,82,1) 100%);
+  background: -ms-linear-gradient(left, rgba(82,82,82,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(82,82,82,1) 100%);
+  background: linear-gradient(to right, rgba(82,82,82,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(82,82,82,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#525252', GradientType=1 );
 }
 img {
   max-width: 95vw;
 }
 
+.bgtransparent {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: black !important;
+}
+body {
+  margin-top: 2.5em;
+  background-color: transparent;
+
+
+}
 a {
   color: rgb(177, 177, 177) !important;
 }
-
+h2 {
+  color: white !important;
+}
 .nav2 {
   color: rgb(32, 32, 32) !important;
 }
 .navbar-text {
     color: rgb(129, 129, 129) !important;
-
+padding: 0 !important;
+}
+.navbar {
+  padding: 0.1rem 1rem;
+  font-size: .9em;
+  background-color: black !important;
+  color: black;
 }
 
 .card-title {
@@ -52,9 +82,12 @@ a {
 }
 .category {
   padding: 5px;
-  background-color: white;
-  margin: 3px;
+  background-color: rgb(226, 226, 226);
+  margin: 5px 3px;
   font-weight: bold;
+}
+.category a {
+  color: black !important;
 }
 .red {
   color: red;
@@ -65,8 +98,18 @@ a {
 .greenlighted {
 background-color: rgb(198, 255, 175);
 }
+.bulblightgreen {
+  filter: drop-shadow(0px 0px 3px yellow);
+-webkit-filter: drop-shadow(0px 0px 3px yellow);
+-moz-filter: drop-shadow(0px 0px 3px yellow);
+}
 .redlighted {
   background-color: rgb(221, 187, 170);
+}
+.bulblightred {
+  filter: drop-shadow(0px 0px 3px yellow);
+-webkit-filter: drop-shadow(0px 0px 3px yellow);
+-moz-filter: drop-shadow(0px 0px 3px yellow);
 }
 .yellowlighted {
   background-color: rgb(241, 224, 187);
@@ -74,9 +117,39 @@ background-color: rgb(198, 255, 175);
 .inline {
   display: inline;
 }
+.inline button {
+  display: inline;
+}
+.modActions {
+  border: 1px solid black;
+  padding: 3px;
+  font-size: .6em;
+  max-width: 200px;
+  display: inline;
+}
+.useradminpanel {
+  border: 1px solid black;
+  padding: 3px;
+  margin: 3px;
+  background-color: rgb(162, 162, 162);
+}
+.useradminpanel a{
+color: black !important;
+}
+.useradminpanel button, .useradminpanel form {
+  display: inline
+}
+.modActions input[type=submit] {
+  background-color: white;
+  color: black;
+  font-size: 1em !important;
+  padding: 3px 5px;
+  border: 1px solid black;
+}
+
 .bulbs {
   display: inline;
-  max-width: 120px;
+
 }
 .bulbs form {
   display: inline;
@@ -86,18 +159,30 @@ background-color: rgb(198, 255, 175);
   color: black;
   padding: 3px 5px;
   border: 1px solid black;
+  border-radius: 3px;
 }
-.bulbs span {
-background-color: rgb(210, 210, 210);
+.bulbs button:hover {
+  background-color: gray;
+  color: white;
+}
+.bulbs span, .disabledButton {
+background-color: black;
+color: white;
 border-radius: 3px;
 margin: 3px;
-}
-body {
-  margin-top: 2em;
-  margin-bottom: 3em;
-  background-color: black !important;
+padding: 5px 5px;
 }
 
+.disabledButton {
+background-color: black !important;
+color: white !important;
+border-radius: 3px;
+margin: 3px;
+padding: 5px 5px;
+}
+.disabledButton span {
+  color: white !important;
+}
 h5 {
   display: inline !important;
 
@@ -106,6 +191,31 @@ h5 {
 h4 {
   font-size: 1em;
   font-weight: bold;
+}
+#iframecontainer {
+  position: relative;
+}
+#linkModalContainer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+justify-content: center;
+z-index: 20;
+}
+.invisible {
+  visibility: hidden;
+  height: 0;
+}
+.linkModal {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 1em;
+  max-width: 80%;
+  z-index: 25;
 }
 iframe
 {
@@ -118,23 +228,26 @@ iframe
 padding: 0px;
 height: 100%;
 border: none;
+position: absolute;
+top: 0;
+z-index: 10;
 }
 .columns {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 928px auto;
   max-width: 90%;
   margin: 0 auto;
 }
 
 .leftbar {
-    background-color: rgb(80, 80, 80);
+        background-color: rgb(133, 133, 133);
     color: black;
     border-right: 2px solid black;
     padding: 5px;
 }
 
 .submitform {
-    background-color: rgb(80, 80, 80);
+    background-color: rgb(133, 133, 133);
     color: black;
     max-width: 80%;
     margin: 0 auto;
@@ -151,6 +264,24 @@ border: none;
 .comments ul {
   list-style: none;
 }
+.commentheader {
+  display: flex;
+  justify-content: space-between;
+      background-color: rgb(215, 215, 215);
+      padding: 5px;
+      color: black;
+}
+.comment a {
+  color: rgb(0, 44, 83) !important;
+  font-weight: bold !important;
+  text-decoration: underline !important;
+}
+.comment p {
+  padding: 5px;
+}
+.commenttitle {
+
+}
 .collapsed {
   height: 0;
   overflow: hidden;
@@ -163,23 +294,53 @@ border: none;
 }
 #allvideos {
   display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
-  background-color: rgb(80, 80, 80);
+    grid-template-columns: 308px 308px 308px;
+    grid-auto-rows: 300px;
+    background-color: black;
   margin: 0 auto;
+  border: 2px solid rgb(133, 133, 133);
+  -webkit-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
+-moz-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
+box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
 }
-.viddiv {
-  border: 2px solid black;
+.box {
+      background-color: black;
+  margin: 0 auto;
+  max-width: 932px;
+  border: 2px solid rgb(133, 133, 133);
+  -webkit-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
+-moz-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
+box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
 }
-.vidgrid {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-.vidgrid div {
+.rules {
+  color: white;
   padding: 5px;
 }
+.box p {
+  padding: 5px;
+}
+.box h2, .box h3 {
+  text-align: center;
+}
+.banbox {
+  max-width: 500px;
+  border: 1px solid black;
+  background-color: rgb(217, 176, 176);
+  color: black;
+  margin: .5em auto;
+}
+.viddiv {
+
+}
+.vidgrid {
+
+  overflow: hidden;
+}
+.vidgrid div {
+  // padding: 5px;
+}
 .title {
-  background-color: rgb(98, 98, 98);
+  background-color: rgb(97, 97, 97);
   text-align: center;
   padding: 5px;
   height: 2em;
@@ -191,9 +352,117 @@ border: none;
   height: auto;
   overflow: auto;
 }
-.thumbnailContainer img {
-  width: 100%;
+.thumb, .thumbred, .thumbgreen, .thumbyellow {
+  width: 300px;
+  height: 200px;
   border: 2px solid white;
+  background-color: transparent;
+  background-position: center;
+  background-size: cover;
+  background-size: 100%;
+  display: block;
+  position: relative;
+margin: 0 auto;
+transition: all 1s ease-in-out;
+-moz-transition: all 1s ease-in-out;
+-ms-transition: all 1s ease-in-out;
+-o-transition: all 1s ease-in-out;
+-webkit-transition: all 1s ease-in-out;
+}
+.thumb:hover, .thumbgreen:hover, .thumbyellow:hover, .thumbred:hover {
+  background-size: 130%;
+}
+.thumbgreen:hover {
+-webkit-box-shadow: inset 0px 0px 7px 1px rgba(13,255,0,1);
+-moz-box-shadow: inset 0px 0px 7px 1px rgba(13,255,0,1);
+box-shadow: inset 0px 0px 7px 1px rgba(13,255,0,1);
+}
+.thumbred:hover {
+-webkit-box-shadow: inset 0px 0px 7px 1px red;
+-moz-box-shadow: inset 0px 0px 7px 1px red;
+box-shadow: inset 0px 0px 7px 1px red;
+}
+.thumbyellow:hover {
+-webkit-box-shadow: inset 0px 0px 7px 1px yellow;
+-moz-box-shadow: inset 0px 0px 7px 1px yellow;
+box-shadow: inset 0px 0px 7px 1px yellow;
+}
+.thumbnailContainer {
+  background-color: black;
+  padding: 2px;
+}
+.descriptionContainer {
+    padding: 5px;
+    overflow: hidden;
+  height: 100%;
+
+  max-height: 90px;
+background-color: black;
+color: white;
+}
+.descinner {
+
+    border: 1px solid gray;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 100%;
+    padding: 5px;
+}
+.notbutton:hover{
+  cursor: default !important;
+  background-color: white !important;
+  color: black !important;
+}
+.vidsubname {
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  padding: 3px 5px;
+}
+.vidsubname a {
+  color: black !important;
+}
+.descinner p {
+      overflow: hidden;
+
+}
+.vidsubtitle {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  bottom: 0;
+
+    padding: 3px 5px;
+    transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+.vidsubtitle h4 a  {
+    color: rgb(218, 218, 218) !important;
+    transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+.vidsubtitle h4 a:hover {
+      color: white !important;
+
+}
+.vidsubtitle:hover {
+    background-color: rgba(0, 0, 0, 1);
+
+}
+.vidsubcat {
+  color: black !important;
+}
+.thumbbulbs {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 .vidplayergrid {
   display: grid;
@@ -204,28 +473,52 @@ border: none;
   max-height: 100vh;
 }
 .vidplayergrid div:nth-child(2) {
-  background-color: rgb(80, 80, 80);
+      background-color: rgb(133, 133, 133);
 }
 .vidplayergrid p {
     padding: .5em;
 }
-.commentsnest {
+.comment img {
+  max-width: 500px;
+}
+.form-group {
+  display: inline !important;
+}
+input[type=date] {
+  max-width: 200px;
+  display: inline;
+}
+label {
+  display: inline;
 }
 .commentslayer {
-  margin-left: .5em;
+  margin-left: 1em;
   border-left: 1px solid black;
-  padding-left: .5em;
+
 }
 .comment {
   border-bottom: 1px solid gray;
+}
+.modgrid {
+  // display: grid;
+  // grid-template-columns: repeat(8, 1fr);
+}
+.modgrid div, .modgrid form {
+  display: inline;
+}
+.flag {
+  color: red !important;
 }
 textarea {
   height: 3em;
   width: 100%;
   padding: .5em;
 }
+.editcomment textarea {
+  background-color: rgb(254, 255, 198);
+}
 input[type=submit] {
-  background-color: rgb(80, 80, 80);
+      background-color: rgb(80, 80, 80);
   color: white;
   border: none;
   margin: 0 auto;

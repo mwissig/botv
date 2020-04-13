@@ -17,6 +17,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require bootstrap-datepicker
 //= require_tree .
 
 var saved_ids = [];
@@ -41,4 +42,44 @@ function showBulbers(type, id) {
     document.getElementById(type + 'bulbers' + id).classList.toggle("expanded");
   saved_ids.push(id);
 
+}
+
+function toggleEditComment(id) {
+  var i;
+  for (i = 0; i < saved_ids.length; i++) {
+      document.getElementById('commentEditor' + saved_ids[i]).classList.remove("expanded");
+  }
+  saved_ids = [];
+  document.getElementById('commentEditor' + id).classList.toggle("expanded");
+  saved_ids.push(id);
+}
+
+function bulbFaker(div, color, num) {
+  num += 1;
+  var otherColor;
+  if (color == "red") {
+    otherColor = "green";
+  }
+  else {
+    otherColor = "red";
+  }
+  var span = document.getElementById(div + color);
+  var button = document.getElementById(div + color + "button");
+  var otherbutton = document.getElementById(div + otherColor + "button");
+  span.innerHTML = num;
+
+  button.classList.add('disabledButton');
+  otherbutton.classList.add('disabledButton');
+  setTimeout(function(){
+    button.disabled = true;
+    otherbutton.disabled = true;
+   }, 1);
+}
+
+function showLink() {
+  document.getElementById("linkModalContainer").classList.remove("invisible");
+}
+
+function dismissLink() {
+  document.getElementById("linkModalContainer").classList.add("invisible");
 }

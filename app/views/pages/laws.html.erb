@@ -1,0 +1,80 @@
+<div class="box rules"><p>
+<h1>Rules</h1>
+<h2>Site Functions</h2>
+<ul>
+  <li>
+All videos that are submitted are automatically approved. However, if a video recieves five red bulbs before getting a green bulb or a comment, it will be deleted.<br>
+Because of this, you can not make the first comment on your own video.<br>
+A deleted video can be submitted again and will not show up as a duplicate.
+</li>
+<li>
+  In order to expand support for video sources, it is possible to submit a link that is not a video. Please don't.
+</li>
+<li>Sites that work: Youtube, Vimeo, Dailymotion, Wistia
+</li>
+<li>Sites that allow embedded video but will not produce a thumbnail: CBS News Video, Kickstarter (the URL from the embed code)
+</li>
+<li>Sites that do not allow embedded video: Pornhub, Kickstarter (the project page)
+</li>
+</ul>
+
+<p>Consequences of breaking rules:
+<ul>
+<li>Serious offenses that threaten the safety of others or security of the site can be enforced with permanent or long-term bans.
+</li>
+<li>Users that need time to cool down (ex. they're spamming "kill yourself" hundreds of times) can have video posting, commenting, and bulbing privileges temporarily suspended.
+</li>
+<li>Users that have posted something that breaks a rule by mistake will just have their content edited (preferably, since this shows records of what was done), or deleted if necessary.
+</li>
+</ul>
+</p>
+<ol>
+  <li>
+    <b>One of the categories for all NSFW videos must be NSFW.</b><br> This is what makes the NSFW filter work! Do not judge whether content is work safe based on whether you personally find it morally objectionable, but on whether it might get someone fired.
+  </li>
+  <li>Don't post anything that's gonna get the FBI sent to my house, even as a joke. Death threats, jokes about planning acts of violence, shit like that.
+  </li>
+  <li>
+    Don't try to destroy the site. I know my code is probably not that great. I still spent a lot of time on this thing so c'mon.
+  </li>
+  <li>
+    No doxxing-- don't share other people's personal information such as their real name, photo, address, or social media that could lead to that info, without their explicit consent (do not assume they consent to having the information shared again if it has been shared once, or if they have posted it themselves).
+  </li>
+  <li>
+    Don't create a new account just to circumvent a ban.
+  </li>
+  <li>
+This site accepts donations from users for domain and server costs. Dontations are not bribes. No amount that you have donated entitles you to control over the site or influence over the moderators or administrators.
+</li>
+<li>
+  We have the right to delete spamming/flooding and edit or delete posts that contain personal information and threats of violence.
+</li>
+
+<li>
+  Lack of moderator response on a subject does not mean we condone that behavior. We have traditionally maintained a free speech based, hands-off approach to moderation and allowed most issues to be handled by the community. This means that people who engaged in bigoted behavior get publicly shamed, not punished. This means, if that's the kind of community you want to be a part of, it's your responsibility as a user to yell at people. However, I pay money for this site, so if someone is ruining the experience for everyone else, I will ban them.
+</li>
+<li>
+  Having said all that about free speech, your username itself can't be a slur or something along those lines. If I have to say that to you you're probably not gonna like it here but that's your choice.
+</li>
+<li>
+  You can ask us to ban you if you feel like you need it. You do not have to violate a rule. You may delete your account at any time. Deleting your account will permanently delete all videos you submitted, all comments you made, and all comments others made in response to your videos and comments. There is no way to recover this data.
+</li>
+</ol>
+<h2>Admins</h2>
+<ul>
+<% @admins.each do |mod| %>
+<li>
+  <%= mod.name %>
+</li>
+  <% end %>
+</ul>
+<h2>Mods</h2>
+<ul>
+<% @mods.each do |mod| %>
+<li>
+  <%= mod.name %>
+</li>
+  <% end %>
+</ul>
+</p>
+</div>

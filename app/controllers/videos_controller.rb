@@ -4,7 +4,8 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.where.not('category1 = ?', 'NSFW').where.not('category2 = ?', 'NSFW').paginate(:page => params[:page], :per_page => 21)
+  @bulb = Bulb.new
   end
 
   # GET /videos/1
@@ -13,6 +14,7 @@ class VideosController < ApplicationController
         @comment = Comment.new
         @bulb = Bulb.new
         @tags = @video.tags.split(",")
+        @video.increment!(:plays)
   end
 
   # GET /videos/new
@@ -25,65 +27,51 @@ class VideosController < ApplicationController
   end
 
   def check
-    @categories = [
-      "ASMR",
-      "Accidents & Explosions",
-      "Advertisements",
-      "Animals",
-      "Animation",
-      "Arts",
-      "Business",
-      "Clips",
-      "Crime",
-      "Dance",
-      "Dashcam",
-      "Economics",
-      "Educational",
-      "Fashion",
-      "Food",
-      "Full-length",
-      "Health",
-      "Humor",
-      "I Made This",
-      "Memes",
-      "Military",
-      "Movies",
-      "Music",
-      "Music Video",
-      "Nerds",
-      "News & Politics",
-      "Performance",
-      "Religion",
-      "Science & Tech",
-      "Short Films",
-      "Sports",
-      "Stunts",
-      "TV",
-      "Toys & Games",
-      "Trailers",
-      "Video Games"
-    ]
+
     @videos = Video.all
     @video = Video.new
     @url = params[:url]
-    @query = VideoInfo.new(@url)
-    if @query.provider == "YouTube"
 
-#  response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + @query.video_id + "&fields=items(snippet(title))&key=" + ENV['youtube_key'])
-response = "YouTube"
-      @title = response
-    else
+    if (@url.include?("youtube") || @url.include?("vimeo") || @url.include?("wistia") || @url.include?("dailymotion") || @url.include?("youtu.be"))
+    @query = VideoInfo.new(@url)
+      @video_id = @query.video_id
       @title = @query.title
-    end
-    @dupes = @videos.where("provider = ? and id_code = ?", @query.provider, @query.video_id)
+      @thumbnail = @query.thumbnail_medium
+      @provider = @query.provider
+      @embed_url = @query.embed_url
+      @embed_code = @query.embed_code
+      @duration = @query.duration
+      @description = @video.description
+      @dupes = @videos.where("provider = ? and id_code = ?", @provider, @video_id)
+  else
+    @query = @url
+    @video_id = @query
+    @embed_url = @query
+    @duration = 0
+    @title = ""
+    @description = ""
+    @embed_code = "<iframe src='#{@query}' onload='showLink()'></iframe>"
+    @provider = "External"
+    @thumbnail = ActionController::Base.helpers.image_path("snow.png")
+    @dupes = @videos.where("provider = ? and id_code = ?", @provider, @video_id)
   end
+end
 
   def tags
     @tag = params[:query]
-    @videos = Video.where("tags like ?", "%#{@tag}%")
+  if current_user.permission.is_horny?
+    @videos = Video.where("tags like ?", "%#{@tag}%").order("created_at ASC").paginate(:page => params[:page], :per_page => 21)
+else
+  @videos = Video.where("tags like ?", "%#{@tag}%").where.not('category1 = ?', 'NSFW').where.not('category2 = ?', 'NSFW').order("created_at ASC").paginate(:page => params[:page], :per_page => 21)
+end
     @comment = Comment.new
     @bulb = Bulb.new
   end
+
+  def nsfw
+      @videos = Video.where(category1: 'NSFW').or(Video.where(category2: 'NSFW')).order("created_at ASC").paginate(:page => params[:page], :per_page => 21)
+  @bulb = Bulb.new
+    end
 
   # POST /videos
   # POST /videos.json
@@ -120,7 +108,7 @@ response = "YouTube"
   def destroy
     @video.destroy
     respond_to do |format|
-      format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -133,6 +121,6 @@ response = "YouTube"
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:user_id, :id_code, :provider, :title, :duration, :description, :thumbnail, :embed_url, :embed_code, :tags, :category1, :category2, :upbulbs, :downbulbs)
+      params.require(:video).permit(:user_id, :id_code, :provider, :title, :duration, :description, :thumbnail, :embed_url, :embed_code, :tags, :category1, :category2, :plays)
     end
 end

@@ -1,0 +1,14 @@
+
+
+
+<%= form_tag('/permissions/togglensfw/', method: 'get' ) do %>
+    <%= button_tag :submit do %>
+
+    <% if current_user.permission.is_horny? %>
+    Turn Safe Mode On <i class="fas fa-sun"></i>
+    <% else %>
+        Turn Safe Mode Off <i class="fas fa-moon"></i>
+        <% end %>
+
+<% end %>
+<% end %>

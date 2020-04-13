@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'permissions/togglensfw'
+  get 'nsfw' => 'videos#nsfw'
+  get 'categories' => 'pages#twocats'
+  get 'category' => 'pages#category'
+  get 'top/viewed'
+  get 'top/loved'
+  get 'top/hated'
+  get 'top/controversial'
+  get 'rules' => 'pages#laws'
+  get 'mod' => 'pages#mod'
   get 'bans/mod'
   get 'bans/index'
 

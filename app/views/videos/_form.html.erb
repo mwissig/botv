@@ -13,12 +13,12 @@
   <% end %>
 
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.hidden_field :id_code, value: @query.video_id %>
-    <%= form.hidden_field :provider, value: @query.provider %>
-    <%= form.hidden_field :thumbnail, value: @query.thumbnail_medium %>
-    <%= form.hidden_field :embed_url, value: @query.embed_url %>
-    <%= form.hidden_field :embed_code, value: @query.embed_code %>
-    <%= form.hidden_field :duration, value: @query.duration %>
+    <%= form.hidden_field :id_code, value: @video_id %>
+    <%= form.hidden_field :provider, value: @provider %>
+    <%= form.hidden_field :thumbnail, value: @thumbnail %>
+    <%= form.hidden_field :embed_url, value: @embed_url %>
+    <%= form.hidden_field :embed_code, value: @embed_code %>
+    <%= form.hidden_field :duration, value: @duration %>
 
   <div class="field">
     <%= form.label :title %>
@@ -27,7 +27,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, value: @query.description %>
+    <%= form.text_area :description, value: @description %>
   </div>
 
   <div class="field">

@@ -1,0 +1,5 @@
+Rails.ajax({
+  url: "/video/<%= video.id %>/bulbs",
+  type: "get",
+  success: function(data) {alert(data) }
+})

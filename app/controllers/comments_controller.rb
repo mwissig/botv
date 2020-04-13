@@ -36,14 +36,12 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.update(comment_params)
+      @comment.body = @comment.body + " </i></b></em></s></a></small> <i><small>(edited by #{view_context.link_to current_user.name, user_path(current_user)} " + @comment.updated_at.strftime("%l:%M%P on %B %e, %Y") + ")</i></small>"
+      @comment.save!
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -51,10 +49,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+redirect_back(fallback_location: root_path)
   end
 
   private

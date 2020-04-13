@@ -1,29 +1,18 @@
-<%= form_with(model: permission, local: true) do |form| %>
-  <% if permission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+<%= simple_form_for([user, user.permission], local: true) do |form| %>
+  <% if user.errors.any? %>
+    <span id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% permission.errors.full_messages.each do |message| %>
+      <% user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
+    </span>
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_admin %>
-    <%= form.check_box :is_admin %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_mod %>
-    <%= form.check_box :is_mod %>
+  <%= user.name %>
   </div>
 
   <div class="field">
@@ -41,22 +30,24 @@
     <%= form.check_box :can_bulb %>
   </div>
 
-  <div class="field">
-    <%= form.label :video_ban_end %>
-    <%= form.datetime_select :video_ban_end %>
+  <div class="field date">
+    <%= form.input :video_ban_end, as: :date, html5: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :comment_ban_end %>
-    <%= form.datetime_select :comment_ban_end %>
+  <div class="field date">
+    <%= form.input :comment_ban_end, as: :date, html5: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :bulb_ban_end %>
-    <%= form.datetime_select :bulb_ban_end %>
+  <div class="field date">
+    <%= form.input :bulb_ban_end, as: :date, html5: true %>
+  </div>
+  <div class="field date">
+    <%= form.label :reason_for_ban %>
+    <%= form.text_area :reason_for_ban %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

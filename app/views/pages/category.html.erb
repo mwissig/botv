@@ -1,0 +1,9 @@
+<div class="box">
+  <h2><%= @query %></h2>
+  <%= form_tag('/categories/', method: 'get' ) do |form| %>
+  <%=hidden_field_tag :query1, params[:query1], value: @query %>
+      <%= select_tag :query2, options_for_select(@categories) %>
+      <%= submit_tag "Search within " + @query %>
+  <% end %>
+  <%= render 'videos/allvideos' %>
+</div>

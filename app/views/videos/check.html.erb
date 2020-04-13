@@ -1,11 +1,20 @@
+  <div class="box">
+    <% if current_user.permission.can_post_video == true %>
+
 <% if @dupes.first != nil %>
   <% @dupes.each do |video| %>
-  Duplicate video found
-    <img src="<%= video.thumbnail %>">
+
+  <h2>Duplicate video found</h2>
+  <center>
+    <img src="<%= video.thumbnail %>"><br>
+    <%= link_to video.title, video_path(video) %> posted on <%= video.created_at.strftime("%B %e, %Y") %> by <%= link_to video.user.name, user_path(video.user) %></center>
+
   <% end %>
 <% else %>
 no dupes found
-<div><img src="<%= @query.thumbnail_large %>"></div>
+<div><img src="<%= @thumbnail %>"></div>
 <div><%= render 'form', video: @video %></div>
 
 <%  end %>
+<%  end %>
+  </div>

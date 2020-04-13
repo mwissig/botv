@@ -1,6 +1,6 @@
 class Video < ApplicationRecord
   belongs_to :user
-  has_many :comments, as: :parent
+  has_many :comments, as: :parent, dependent: :destroy
   has_many :bulbs, as: :bulbable
     validates :user_id, presence: true
   validates :id_code, presence: true
@@ -12,8 +12,6 @@ class Video < ApplicationRecord
 
 def default_values
   self.user_id ||= current_user.id
-  self.upbulbs ||= 0
-  self.downbulbs ||= 0
 end
 
 end

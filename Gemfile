@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 3.1.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap-datepicker-rails'
 gem 'ckeditor'
 gem 'simple_form'
 gem 'bootstrap_form'
@@ -38,7 +39,7 @@ gem 'vimeo'
 gem "figaro"
 gem "video_info"
 gem 'httparty'
-
+gem 'rails-html-sanitizer'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment

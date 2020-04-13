@@ -1,1 +1,75 @@
-<%= @user.name %>
+<div class="box">
+<h2><%= @user.name %></h2>
+
+<% if @user.permission.can_comment == false || @user.permission.can_post_video == false || @user.permission.can_bulb == false %>
+<div class="banbox">
+<p>
+<%= @user.name %> is banned from:<br>
+<% if @user.permission.can_post_video == false %>
+Submitting videos until <%= @user.permission.video_ban_end.strftime("%B %e, %Y") %><br>
+<% end %>
+<% if @user.permission.can_comment == false %>
+Commenting until <%= @user.permission.comment_ban_end.strftime("%B %e, %Y") %><br>
+<% end %>
+<% if @user.permission.can_bulb == false %>
+Bulbing until <%= @user.permission.bulb_ban_end.strftime("%B %e, %Y") %><br>
+<% end %>
+Ban reason: <%= @user.permission.reason_for_ban %>
+</p>
+</div>
+<% end %>
+
+
+<h3>Videos submitted by <%= @user.name %> </h2>
+<% @user.videos.each do |video| %>
+  <%= link_to video.title, video_path(video) %><br>
+<% end %>
+<% if current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
+<div class="useradminpanel">
+Admin options:<br>
+Change user's name:
+<%= form_with(model: [@user], local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <% @user.errors.full_messages.each do |message| %>
+      <% end %>
+    </div>
+  <% end %>
+
+    <%= form.text_field :name %>
+    <%= form.submit %>
+<% end %>
+
+
+Ban or suspend user:
+  <div class="modgrid">
+<%= render 'permissions/form', user: @user %>
+</div>
+
+Edit recent comments:
+<div class="recentcomments">
+  <% @user.comments.order("created_at DESC").limit(20).each do |comment| %>
+   <% @layer = comment %>
+    <% until @layer.parent_type == "Video" %>
+      <% @layer.parent = @layer.parent.parent %>
+    <% end %>
+       <%= link_to @layer.parent.title, video_path(@layer.parent) %>
+       <%= form_with(model: [comment], local: true) do |form| %>
+         <% if comment.errors.any? %>
+           <div id="error_explanation">
+             <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+             <% comment.errors.full_messages.each do |message| %>
+             <% end %>
+           </div>
+         <% end %>
+
+           <%= form.text_area :body %>
+           <%= form.submit %>
+       <% end %>
+<%= button_to 'Delete', comment, method: :delete, data: { confirm: "Are you sure you want to delete this comment? All replies to this comment INCLUDING THOSE BY OTHER USERS will also be deleted. PLEASE CHECK THE VIDEO PAGE FIRST.\n\n" + comment.user.name + ": "+ comment.body + "" } %><hr>
+  <% end %><hr>
+</div>
+</div>
+<% end %>
+</div>

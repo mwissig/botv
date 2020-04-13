@@ -31,3 +31,21 @@
 
 en:
   hello: "Hello world"
+
+en-US:
+  date:
+    datepicker:
+      default: "mm/dd/yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "dd/mm/yyyy"
+      long: ! '%B %d, %Y'
+
+en-AU:
+  date:
+    datepicker:
+      default: "dd/mm/yyyy"
+      long: "dd MM, yyyy"
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d %B, %Y'

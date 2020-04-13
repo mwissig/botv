@@ -27,8 +27,25 @@ class BulbsController < ApplicationController
   def create
     @bulb = @bulbable.bulbs.new bulb_params
     @bulb.user_id = current_user.id
-    @bulb.save
-        redirect_back(fallback_location: root_path)
+    @bulb.save!
+      if @bulb.save
+        if @bulb.bulbable_type == "Video"
+          if @bulb.bulbable.comments.count == 0 && @bulb.bulbable.bulbs.where(color: "green").count == 0 && @bulb.bulbable.bulbs.where(color: "red").count >= 5
+            @bulb.bulbable.destroy!
+            respond_to do |format|
+              format.html { redirect_to bulbs_url, notice: 'Bulb was successfully destroyed.' }
+              format.js   { render :js => "alert('Your vote delete the video: #{@bulb.bulbable.title}')" }
+            end
+          end
+        end
+    end
+    respond_to do |format|
+      format.html { redirect_to bulbs_url, notice: 'Bulbed' }
+      format.json { head :no_content }
+    end
+
+
+        # redirect_back(fallback_location: root_path)
   end
 
   # PATCH/PUT /bulbs/1

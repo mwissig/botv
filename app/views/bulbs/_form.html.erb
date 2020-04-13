@@ -1,4 +1,4 @@
-<%= form_with(model: [bulbable, bulb], local: true) do |form| %>
+<%= form_with(model: [bulbable, bulb], remote: true) do |form| %>
   <% if bulb.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bulb.errors.count, "error") %> prohibited this bulb from being saved:</h2>
@@ -14,12 +14,22 @@
 
 
     <%= form.hidden_field :color, value: color %>
+<% @divname = bulbable.class.name.sub("Controller", "").singularize %>
+<% @bulbcount = bulbable.bulbs.where(color: color).count %>
+<% @div_id = 'bulbcount' + @divname + bulbable.id.to_s %>
+<% @div_id_with_color = 'bulbcount' + @divname + bulbable.id.to_s + color %>
 
+<%= button_tag(type: 'submit', id: "#{@div_id_with_color}button", class: "btn btn-primary", onclick: "bulbFaker('#{@div_id}','#{color}',#{@bulbcount});") do %>
 
+      <% if bulbable.bulbs.where(color: color).count >= 5 %>
+          <%= image_tag(color + "bulb.png", class: "bulblight" + color) %>
+      <% else %>
+    <%= image_tag(color + "bulb.png") %>
+    <% end %>
 
-
-<%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-  <i class="fas fa-lightbulb <%= color %>"></i>   <%= bulbable.bulbs.where(color: color).count %>
+   <span id="<%= @div_id_with_color %>" class="bgtransparent">
+   <%= @bulbcount %>
+ </span>
     <% end %>
 
 <% end %>

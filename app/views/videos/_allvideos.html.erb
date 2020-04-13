@@ -1,41 +1,79 @@
 <div id="allvideos">
 
 <% @videos.each do |video| %>
-<div class="viddiv">
-  <div class="title">           <%= link_to(video, alt: video.title)  do %>
 
-        <h4><%= video.title.truncate_words(8).truncate(405) %></h4>
-        <% end %> </div>
-
-<div>
 <div id="vid<%= video.id %>" class="vidgrid">
 
 
 
   <div class="thumbnailContainer">
-    <%= link_to(video) do %>
-    <img src="<%= video.thumbnail %>"><br>
 
-    <% end %>
-    <div class="bulbs inline">
+
+  <% @gb = video.bulbs.where(color: "green").count %>
+  <% @rb = video.bulbs.where(color: "red").count %>
+
+      <%if (@gb >= 5 && @rb < 5) || (@rb >= 5 && @gb >= 5 && (@gb / @rb >= 2)) %>
+
+            <div class="thumbgreen" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+
+      <% elsif (@rb >= 5 && @gb < 5) || (@gb >= 5 && @rb >= 5 && (@rb / @gb >= 2)) %>
+
+            <div class="thumbred" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+
+      <% elsif @rb >= 5 && @gb >= 5 %>
+
+            <div class="thumbyellow" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+
+      <% else %>
+    <div class="thumb" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+      <% end %>
+
+
+
+
+
+      <div class="thumbbulbs bulbs inline">
+<button class="notbutton"> <i class="fas fa-eye"></i> <%= video.plays %> </button>
+       <% if Bulb.where("user_id = ? and bulbable_type = ? and bulbable_id = ?", current_user.id, "Video", video.id).exists? || current_user.permission.can_bulb == false || video.user == current_user  %>
+
+        <%= render 'bulbs/disabled', bulbable: video, color: "green" %>
+        <%= render 'bulbs/disabled', bulbable: video, color: "red" %>
+        <% else %>
   <%= render 'bulbs/form', bulbable: video, bulb: @bulb, color: "green" %>
   <%= render 'bulbs/form', bulbable: video, bulb: @bulb, color: "red" %>
-</div><br>
-    <%= video.category1 %> - <%= video.category2 %><br>
-    <%= video.user.name %>
-  </div>
-  <div>
+  <% end %>
 
+  </div>
+
+<span class="vidsubtitle"><h4><%= link_to(video) do %>
+  <%= video.title.truncate_words(20).truncate(120) %></h4>
+  <% end %>
+     <span class="category vidsubcat"><%= link_to video.category1, category_path(:query => video.category1) %></span><span class="category vidsubcat"><%= link_to video.category2, category_path(:query => video.category2) %></span>
+    <span class="vidsubname">
+    <%= link_to user_path(video.user) do %>
+    <i class="fas fa-user"></i>
+    <%= video.user.name %>
+    <%end%>
+    </span>
+
+   </span>
+    </div>
+
+
+  </div>
+
+  <div class="descriptionContainer">
+<div class="descinner">
     <p>
 
 
-      <%= video.description.truncate_words(30).truncate(180) %></p>
+      <%= video.description.truncate_words(50).truncate(250) %></p>
 
   </div>
+    </div>
+
 </div>
 
-
-</div>
-</div>
 <% end %>
+<%= render 'layouts/pagination' %>
 </div>

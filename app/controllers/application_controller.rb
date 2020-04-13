@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
    before_action :authenticate_user!
       before_action :update_permission
+before_action :define_categories
    @users = User.all
+
    # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+protect_from_forgery prepend: true, with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -33,7 +35,8 @@ def update_permission
         user_id: current_user.id
       )
       @permission.save!
-    end
+    else
+
 if current_user.permission.video_ban_end != nil
     if current_user.permission.video_ban_end < DateTime.now
       current_user.permission.video_ban_end = nil
@@ -58,7 +61,51 @@ if current_user.permission.bulb_ban_end != nil
     end
   end
 
+end
   end
+end
+
+def define_categories
+@categories = [
+  "ASMR",
+  "Accidents & Explosions",
+  "Advertisements",
+  "Animals",
+  "Animation",
+  "Arts",
+  "Business",
+  "Clips",
+  "Crime",
+  "Dance",
+  "Dashcam",
+  "Economics",
+  "Educational",
+  "Fashion",
+  "Food",
+  "Full-length",
+  "Health",
+  "Horror",
+  "Humor",
+  "I Made This",
+  "Memes",
+  "Military",
+  "Movies",
+  "Music",
+  "Music Video",
+  "Nerds",
+  "NSFW",
+  "News & Politics",
+  "Performance",
+  "Religion",
+  "Science & Tech",
+  "Short Films",
+  "Sports",
+  "Stunts",
+  "TV",
+  "Toys & Games",
+  "Trailers",
+  "Video Games"
+]
 end
 
 end

@@ -1,0 +1,8 @@
+<div class="box">
+  Mod panel<br>
+  <% @users.each do |user| %>
+  <%= link_to user.name, user_path(user) %><hr>
+  <% end %>
+
+<%= link_to "Bans panel", bans_mod_path %>
+</div>

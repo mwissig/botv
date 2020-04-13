@@ -1,3 +1,10 @@
 <span>
-  <i class="fas fa-lightbulb <%= color %>"></i>  <%= bulbable.bulbs.where(color: color).count %>
+
+  <% if bulbable.bulbs.where(color: color).count >= 5 %>
+      <%= image_tag(color + "bulb.png", class: "bulblight" + color) %> <%= bulbable.bulbs.where(color: color).count %>
+  <% else %>
+<%= image_tag(color + "bulb.png") %> <%= bulbable.bulbs.where(color: color).count %>
+<% end %>
+
+
 </span>
