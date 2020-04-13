@@ -8,6 +8,16 @@
         <button onclick="dismissLink()">Dismiss this message</button>
       </div>
     </div>
+<% if ((@video.category1 == "NSFW" || @video.category2 == "NSFW") && !current_user.permission.is_horny? ) %>
+    <div id="nsfwModalContainer" class="">
+      <div class="nsfwModal">
+        This video is hidden because you are in safe mode.<br>
+        If you would like to see it, you can either turn safe mode off, or just dismiss this message to view it anyway while leaving your settings intact.<br>
+                      <%= render 'permissions/nsfwform', user: current_user %>
+        <button onclick="dismissNsfw()">Just show me the video</button>
+      </div>
+    </div>
+    <% end %>
 
       <%= @video.embed_code.html_safe %>
   </div>
@@ -76,7 +86,11 @@
   </div>
 </div>
 <div class="comments">
+  <% if (@video.user == current_user && @video.comments.count == 0) %>
+  You can't leave the first comment on your own video.
+  <% else %>
   <%= render 'comments/form', comment: @comment %>
+<% end %>
 
 <%= render partial: 'comments/comment', collection: @video.comments %>
 

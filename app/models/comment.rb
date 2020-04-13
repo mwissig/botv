@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :parent, polymorphic: true
   has_many :comments, as: :parent, dependent: :destroy
-  has_many :bulbs, as: :bulbable
+  has_many :bulbs, as: :bulbable, dependent: :destroy
   validates :user_id, presence: true
   validates :parent_id, presence: true
   validates :body, presence: true

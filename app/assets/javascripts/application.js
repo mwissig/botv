@@ -83,3 +83,9 @@ function showLink() {
 function dismissLink() {
   document.getElementById("linkModalContainer").classList.add("invisible");
 }
+function showNsfw() {
+  document.getElementById("nsfwModalContainer").classList.remove("invisible");
+}
+function dismissNsfw() {
+    document.getElementById("nsfwModalContainer").classList.add("invisible")
+}
