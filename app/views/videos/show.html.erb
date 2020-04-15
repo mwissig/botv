@@ -39,7 +39,10 @@
     </p>
 
 <p>
-    <span class="category"><%= @video.category1 %></span><span class="category"><%= @video.category2 %></span>
+  <span class="category"><%= link_to @video.category1, category_path(:query => @video.category1) %></span>
+  <% if !@video.category2.blank? %>
+  <span class="category"><%= link_to @video.category2, category_path(:query => @video.category2) %></span>
+  <% end %>
   </p>
 
 

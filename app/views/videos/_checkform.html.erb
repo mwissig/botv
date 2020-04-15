@@ -7,8 +7,7 @@
   <% end %>
   </ul>
 </div>Enter the URL<br>
-<small>(YouTube, Vimeo, Dailymotion, and Wistia supported. Limited support for CBS News.
-  Other video sites work as external links.)</small><br>
+<small><%= link_to "List of Supported Sources", sources_path %></small><br>
     <%= url_field_tag :url, params[:url] %>
     <%= button_tag :submit do %>
     Submit

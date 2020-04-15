@@ -15,6 +15,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require rails-ujs
+//= require jquery-ui/widgets/sortable
+//= require rails_sortable
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-datepicker
@@ -41,7 +43,6 @@ function showBulbers(type, id) {
       }
     document.getElementById(type + 'bulbers' + id).classList.toggle("expanded");
   saved_ids.push(id);
-
 }
 
 function toggleEditComment(id) {

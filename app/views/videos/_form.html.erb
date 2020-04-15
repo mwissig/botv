@@ -13,21 +13,21 @@
   <% end %>
 
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.hidden_field :id_code, value: @video_id %>
-    <%= form.hidden_field :provider, value: @provider %>
-    <%= form.hidden_field :thumbnail, value: @thumbnail %>
-    <%= form.hidden_field :embed_url, value: @embed_url %>
-    <%= form.hidden_field :embed_code, value: @embed_code %>
-    <%= form.hidden_field :duration, value: @duration %>
+    <%= form.hidden_field :id_code, value: @video_id, :required => true %>
+    <%= form.hidden_field :provider, value: @provider, :required => true %>
+    <%= form.hidden_field :thumbnail, value: @thumbnail, :required => true %>
+    <%= form.hidden_field :embed_url, value: @embed_url, :required => true %>
+    <%= form.hidden_field :embed_code, value: @embed_code, :required => true %>
+    <%= form.hidden_field :duration, value: @duration, :required => true %>
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, value: @title %>
+    <%= form.text_field :title, value: @title, :required => true, :maxlength => 255 %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, value: @description %>
+    <%= form.text_area :description, value: @description, :required => true %>
   </div>
 
   <div class="field">
@@ -37,8 +37,8 @@
 
   <div class="field">
     <%= form.label :category1, "Categories" %>
-    <%= form.select :category1, options_for_select(@categories) %>
-    <%= form.select :category2, options_for_select(@categories) %>
+    <%= form.select :category1, options_for_select(@categories), {:include_blank => 'Select A Category'}, {:required => true, :class => 'select'} %>
+    <%= form.select :category2, options_for_select(@categories), {:include_blank => 'Select A Category'} %>
   </div>
 
 

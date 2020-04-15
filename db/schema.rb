@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_224005) do
+ActiveRecord::Schema.define(version: 2020_04_15_024813) do
 
   create_table "bulbs", force: :cascade do |t|
     t.integer "user_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 2020_04_12_224005) do
     t.datetime "updated_at", null: false
     t.string "reason_for_ban"
     t.boolean "is_horny"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.text "description"
+    t.string "category1"
+    t.string "category2"
+    t.string "tags"
+    t.integer "plays", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "statuses", force: :cascade do |t|

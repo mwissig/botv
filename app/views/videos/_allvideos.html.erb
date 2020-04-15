@@ -14,18 +14,18 @@
 
       <%if (@gb >= 5 && @rb < 5) || (@rb >= 5 && @gb >= 5 && (@gb / @rb >= 2)) %>
 
-            <div class="thumbgreen" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+            <div class="thumbgreen" style="background-image: url(<%= video.thumbnail.html_safe %>);">
 
       <% elsif (@rb >= 5 && @gb < 5) || (@gb >= 5 && @rb >= 5 && (@rb / @gb >= 2)) %>
 
-            <div class="thumbred" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+            <div class="thumbred" style="background-image: url(<%= video.thumbnail.html_safe %>);">
 
       <% elsif @rb >= 5 && @gb >= 5 %>
 
-            <div class="thumbyellow" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+            <div class="thumbyellow" style="background-image: url(<%= video.thumbnail.html_safe %>);">
 
       <% else %>
-    <div class="thumb" style="background-image:url(<%= video.thumbnail.html_safe %>)">
+    <div class="thumb" style="background-image: url(<%= video.thumbnail.html_safe %>);">
       <% end %>
 
 
@@ -48,7 +48,10 @@
 <span class="vidsubtitle"><h4><%= link_to(video) do %>
   <%= video.title.truncate_words(20).truncate(120) %></h4>
   <% end %>
-     <span class="category vidsubcat"><%= link_to video.category1, category_path(:query => video.category1) %></span><span class="category vidsubcat"><%= link_to video.category2, category_path(:query => video.category2) %></span>
+     <span class="category vidsubcat"><%= link_to video.category1, category_path(:query => video.category1) %></span>
+     <% if !video.category2.blank? %>
+     <span class="category vidsubcat"><%= link_to video.category2, category_path(:query => video.category2) %></span>
+     <% end %>
     <span class="vidsubname">
     <%= link_to user_path(video.user) do %>
     <i class="fas fa-user"></i>

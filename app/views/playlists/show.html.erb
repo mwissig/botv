@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @playlist.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @playlist.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @playlist.description %>
+</p>
+
+<p>
+  <strong>Category1:</strong>
+  <%= @playlist.category1 %>
+</p>
+
+<p>
+  <strong>Category2:</strong>
+  <%= @playlist.category2 %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @playlist.tags %>
+</p>
+
+<p>
+  <strong>Plays:</strong>
+  <%= @playlist.plays %>
+</p>
+
+<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+<%= link_to 'Back', playlists_path %>

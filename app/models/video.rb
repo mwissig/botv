@@ -5,7 +5,8 @@ class Video < ApplicationRecord
     validates :user_id, presence: true
   validates :id_code, presence: true
   validates :provider, presence: true
-  validates :title, presence: true
+  validates :title, presence: true, length: {maximum: 255}
+  validates :category1, presence: true
   validates :embed_url, presence: true
   validates :embed_code, presence: true
   before_save :default_values

@@ -32,7 +32,19 @@ html {
 img {
   max-width: 95vw;
 }
-
+.centered-image {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+.twitter-tweet, .EmbeddedTweet {
+  max-width: 100% !important;
+  margin: 0 auto;
+}
+.fb-video {
+max-height: 100vh !important;
+overflow: hidden;
+}
 .bgtransparent {
   background-color: transparent !important;
   border: none !important;
@@ -235,6 +247,7 @@ border: none;
 position: absolute;
 top: 0;
 z-index: 10;
+max-height: 100vh !important;
 }
 .columns {
   display: grid;
@@ -494,6 +507,9 @@ input[type=date] {
 }
 label {
   display: inline;
+}
+input {
+  max-width: 100%;
 }
 .commentslayer {
   margin-left: 1em;

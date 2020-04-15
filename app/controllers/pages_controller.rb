@@ -22,7 +22,10 @@ class PagesController < ApplicationController
   end
   end
 
-  def laws
+  def sources
+  end
+
+  def rules
     @users = User.all.order("name ASC")
      @mods = User.joins(:permission).where(permissions: {is_mod: true})
      @admins = User.joins(:permission).where(permissions: {is_admin: true})

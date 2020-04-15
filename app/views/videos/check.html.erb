@@ -6,13 +6,16 @@
 
   <h2>Duplicate video found</h2>
   <center>
-    <img src="<%= video.thumbnail %>"><br>
+    <p>
+    <img class="centered-image" src="<%= video.thumbnail %>">
+  </p>
+    <p>
     <%= link_to video.title, video_path(video) %> posted on <%= video.created_at.strftime("%B %e, %Y") %> by <%= link_to video.user.name, user_path(video.user) %></center>
-
+</p>
   <% end %>
 <% else %>
 no dupes found
-<div><img src="<%= @thumbnail %>"></div>
+<div><img class="centered-image" src="<%= @thumbnail %>"></div>
 <div><%= render 'form', video: @video %></div>
 
 <%  end %>

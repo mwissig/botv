@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :playlists
+  get 'sources' => 'pages#sources'
+
   get 'permissions/togglensfw'
   get 'nsfw' => 'videos#nsfw'
   get 'categories' => 'pages#twocats'
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
   get 'top/loved'
   get 'top/hated'
   get 'top/controversial'
-  get 'rules' => 'pages#laws'
+  get 'rules' => 'pages#rules'
   get 'mod' => 'pages#mod'
   get 'bans/mod'
   get 'bans/index'
