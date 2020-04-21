@@ -10,6 +10,26 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
+            @fullscreen = true
+    @is_playlist = true
+    @ids = []
+    @videos = @playlist.items.order(:sort).all.paginate(:page => params[:page], :per_page => 1)
+
+
+    @bulb = Bulb.new
+    @comment = Comment.new
+            @playlist.increment!(:plays)
+@thisvid = Video.find_by_id((@videos.first).video_id)
+@thisvid.increment!(:plays)
+
+@items = Item.where(video_id: @thisvid.id)
+@playlist_ids = []
+@items.each do |item|
+  @playlist_ids << item.playlist
+end
+@playlist_ids.uniq!
+@playlists = Playlist.where(id: @playlist_ids.map(&:id))
+
   end
 
   # GET /playlists/new
@@ -19,7 +39,40 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists/1/edit
   def edit
+    @items = @playlist.items.order(:sort).all
   end
+
+  def createplaylist
+    @video = Video.find_by_id(params[:video_id])
+    @playlist = Playlist.new(
+      user_id: current_user.id,
+      title: params[:title],
+      description: params[:description],
+      category1: params[:category1],
+      category2: params[:category2],
+      tags: params[:tags],
+    )
+    @playlist.save!
+    @first_item = Item.new(
+      playlist_id: @playlist.id,
+      video_id: @video.id
+    )
+    @first_item.save!
+    redirect_to playlist_path(@playlist)
+end
+
+def addtoplaylist
+    @video = Video.find_by_id(params[:video_id])
+    @playlist = Playlist.find_by_id(params[:playlist])
+    @count = @playlist.items.count
+    @new_item = Item.new(
+      playlist_id: @playlist.id,
+      video_id: @video.id,
+      sort: @count + 1
+    )
+    @new_item.save!
+    redirect_to playlist_path(@playlist)
+end
 
   # POST /playlists
   # POST /playlists.json

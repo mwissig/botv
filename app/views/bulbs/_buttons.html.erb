@@ -1,0 +1,8 @@
+<% if Bulb.where("user_id = ? and bulbable_type = ? and bulbable_id = ?", current_user.id, type, bulbable.id).exists? || current_user.permission.can_bulb == false || bulbable.user == current_user %>
+<%= render 'bulbs/disabled', bulbable: bulbable, color: "green" %>
+<%= render 'bulbs/disabled', bulbable: bulbable, color: "red" %>
+<% else %>
+<%= render 'bulbs/form', bulbable: bulbable, bulb: @bulb, color: "green" %>
+<%= render 'bulbs/form', bulbable: bulbable, bulb: @bulb, color: "red" %>
+<% end %>
+<button class="bulbs inline" onclick="showBulbers('<%= type.downcase %>',<%= bulbable.id %>)">?</button>

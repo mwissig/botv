@@ -11,8 +11,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
+  #     @user = User.new(sign_up_params)
+  #     respond_to do |format|
+  #       if verify_recaptcha(model: @user) && params[:age_confirm] == true && params[:terms] == true && @user.save
+  #         format.html { redirect_to @user, notice: 'Video was successfully created.' }
+  #         format.json { render :show, status: :created, location: @user }
+  #       else
+  #         format.html { render :new }
+  #         format.json { render json: @user.errors, status: :unprocessable_entity }
+  #       end
+  #     end
   # end
+
+  def create
+ if !verify_recaptcha
+    flash.delete :recaptcha_error
+    build_resource(sign_up_params)
+    resource.valid?
+    resource.errors.add(:base, "There was an error with the recaptcha code below. Please re-enter the code.")
+    clean_up_passwords(resource)
+    respond_with_navigational(resource) { render_with_scope :new }
+  else
+    flash.delete :recaptcha_error
+    super
+  end
+end
 
   # GET /resource/edit
   # def edit
@@ -42,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
   # end
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -66,16 +66,20 @@
 
 
 </div>
+
 <div class="bulbers collapsed" id="commentbulbers<%= comment.id %>">
-  green:
+  <div>
+  <%= image_tag("greenbulb.png") %>
   <% greenbulbers(comment).each do |bulber| %>
-  <span class="bulber"><%= bulber.name %></span>
+  <span class="vidsubname"><%= link_to bulber.name, user_path(bulber) %></span>
   <% end %>
-  <br>
-  red:
+</div>
+<div>
+  <%= image_tag("redbulb.png") %>
   <% redbulbers(comment).each do |bulber| %>
-  <span class="bulber"><%= bulber.name %></span>
+  <span class="vidsubname"><%= link_to bulber.name, user_path(bulber) %></span>
   <% end %>
+</div>
 </div>
 
 <% if current_user.permission.is_mod == true || current_user.permission.is_admin == true %>

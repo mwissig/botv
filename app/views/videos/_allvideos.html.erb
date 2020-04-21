@@ -1,7 +1,7 @@
 <div id="allvideos">
 
 <% @videos.each do |video| %>
-
+<% @pagetype = "videos" %>
 <div id="vid<%= video.id %>" class="vidgrid">
 
 
@@ -78,5 +78,5 @@
 </div>
 
 <% end %>
-<%= render 'layouts/pagination' %>
+
 </div>

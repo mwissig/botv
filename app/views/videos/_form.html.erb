@@ -40,8 +40,9 @@
     <%= form.select :category1, options_for_select(@categories), {:include_blank => 'Select A Category'}, {:required => true, :class => 'select'} %>
     <%= form.select :category2, options_for_select(@categories), {:include_blank => 'Select A Category'} %>
   </div>
-
-
+<div id="captchabox">
+<%= recaptcha_tags %>
+</div>
   <div class="actions">
     <%= form.submit %>
   </div>

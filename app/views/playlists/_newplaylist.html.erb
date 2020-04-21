@@ -1,0 +1,11 @@
+<div class="playlistform createplaylist">
+  <%= form_tag('/newplaylist/', method: 'get' ) do |form| %>
+  <%= hidden_field_tag :video_id, params[:video_id], value: params[:id] %>
+  <%= text_field_tag :title, nil, :required => true, :placeholder => "Playlist Title", :maxlength => 255 %>
+  <%= text_area_tag :description, nil, :required => true, :placeholder => "Describe your playlist-- you can edit this later." %>
+  <%= select_tag :category1, options_for_select(@categories), {:include_blank => 'Select A Category'} %>
+  <%= select_tag :category2, options_for_select(@categories), {:include_blank => 'Select A Category'} %>
+  <%= text_field_tag :tags, nil, :placeholder => "Tags separated by commas" %>
+      <%= submit_tag "Create" %>
+  <% end %>
+</div>

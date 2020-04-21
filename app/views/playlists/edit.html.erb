@@ -1,6 +1,34 @@
-<h1>Editing Playlist</h1>
+<div class="box rules">
 
+  <% if @playlist.user == current_user || current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
+  <h2>Editing Playlist "<%= link_to @playlist.title, playlist_path(@playlist) %>"</h2>
+<h3>Basic Info</h3>
 <%= render 'form', playlist: @playlist %>
+<% else %>
+You can not edit another user's playlist.
+<% end %>
 
-<%= link_to 'Show', @playlist %> |
-<%= link_to 'Back', playlists_path %>
+  <% if @playlist.user == current_user %>
+<h3>Videos</h3>
+<h4>Drag and Drop to Change Order</h4>
+<table>
+  <tbody class="sortable">
+<% @items.each do |item| %>
+<%   video = Video.find_by_id(item.video_id) %>
+<%= render 'editoritem', item: item, video: video %>
+
+<% end %>
+</tbody>
+</table>
+<% else %>
+You can not edit another user's playlist.
+<% end %>
+
+  <% if @playlist.user == current_user || current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
+<h3>Delete Playlist</h3>
+<%= button_to 'Delete Playlist', @playlist, method: :delete, data: { confirm: 'Are you sure you want to delete this playlist?' } %>
+<% else %>
+You can not edit another user's playlist.
+<% end %>
+
+</div>

@@ -1,0 +1,38 @@
+<tr id="<%= item.sortable_id %>">
+  <td>
+    <div class="sortbox">
+
+      <div class="thumb minithumb" style="background-image: url(<%= video.thumbnail.html_safe %>);">
+      </div>
+
+      <div class="caption inline">
+        <h4 class="sorttitle">
+        <%= link_to(video) do %>
+        <%= video.title.truncate_words(20).truncate(120) %>
+        </h4>
+        <% end %>
+
+        <div class="desccolumns">
+          <div>
+            <p>
+              <%= video.description.truncate_words(20).truncate(120) %>
+            </p>
+          </div>
+
+          <div class="right">
+
+            <span class="vidsubname">
+              <%= link_to user_path(video.user) do %>
+              <i class="fas fa-user"></i>
+              <%= video.user.name %>
+              <%end%>
+            </span>
+
+            <%= button_to 'Remove', [@playlist, item], method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </td>
+</tr>

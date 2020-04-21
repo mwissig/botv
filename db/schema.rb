@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_024813) do
+ActiveRecord::Schema.define(version: 2020_04_15_140850) do
 
   create_table "bulbs", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 2020_04_15_024813) do
     t.text "body"
     t.integer "parent_id"
     t.string "parent_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "sort", default: 1
+    t.integer "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

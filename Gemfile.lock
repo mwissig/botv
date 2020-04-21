@@ -197,6 +197,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recaptcha (5.5.0)
+      json
     regexp_parser (1.7.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -308,6 +310,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails-html-sanitizer
   rails_sortable
+  recaptcha
   sass-rails (~> 5.0)
   selenium-webdriver
   sentry-raven

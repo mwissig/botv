@@ -24,8 +24,25 @@
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
+<% if @fullscreen == true %>
 
-    <%= yield %>
+  <%= yield %>
+
+    <% else %>
+
+    <div class="columns">
+
+    <%= render 'layouts/sidebar' %>
+     <div>
+      <%= yield %>
+     </div>
+
+     <div>
+     </div>
+
+    </div>
+
+    <% end %>
 
   </body>
 </html>

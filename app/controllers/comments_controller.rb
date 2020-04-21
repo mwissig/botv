@@ -68,6 +68,8 @@ redirect_back(fallback_location: root_path)
       @parent = Comment.find_by_id(params[:comment_id])
     elsif params[:video_id]
       @parent = Video.find_by_id(params[:video_id])
+    elsif params[:playlist_id]
+      @parent = Playlist.find_by_id(params[:playlist_id])
     end
   end
 end

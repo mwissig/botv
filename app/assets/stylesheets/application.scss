@@ -76,8 +76,27 @@ padding: 0 !important;
   font-size: .9em;
   background-color: black !important;
   color: black;
+  justify-content: space-around !important;
 }
+#clip {
+  max-width: 100%;
+  text-align: center;
+  width: 100%;
+}
+#clip iframe, #captchabox iframe {
+  max-width: 500px !important;
+  max-height: 300px !important;
+  position: relative !important;
+  margin: 0 auto;
+}
+#captchabox {
+  margin: 5px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#captchabox iframe {
 
+}
 .card-title {
   color: rgb(32, 32, 32) !important;
 }
@@ -126,11 +145,8 @@ background-color: rgb(198, 255, 175);
 .yellowlighted {
   background-color: rgb(241, 224, 187);
 }
-.inline {
-  display: inline;
-}
-.inline button {
-  display: inline;
+.inline, .inline button, .inline span, .inline input, .inline form {
+  display: inline !important;
 }
 .modActions {
   border: 1px solid black;
@@ -158,7 +174,11 @@ color: black !important;
   padding: 3px 5px;
   border: 1px solid black;
 }
-
+.bulbers div, .checkboxes div {
+  border: 1px solid white;
+  padding: 5px;
+  margin: 5px;
+}
 .bulbs {
   display: inline;
 
@@ -184,7 +204,11 @@ border-radius: 3px;
 margin: 3px;
 padding: 5px 5px;
 }
-
+.dragdrop {
+  padding: 5px;
+  border: 1px solid white;
+  margin: 5px;
+}
 .disabledButton {
 background-color: black !important;
 color: white !important;
@@ -207,7 +231,7 @@ h4 {
 #iframecontainer {
   position: relative;
 }
-#linkModalContainer, #nsfwModalContainer {
+#linkModalContainer, #nsfwModalContainer, #playlistModalContainer {
   position: absolute;
   top: 0;
   width: 100%;
@@ -216,22 +240,35 @@ h4 {
   align-items: center;
 justify-content: center;
 z-index: 30;
+background-color: transparent;
 }
 #nsfwModalContainer {
   background-color: rgba(0, 0, 0, 0.95);
 }
-
+#usernameSearch {
+  overflow: hidden;
+}
 .invisible {
   visibility: hidden;
   height: 0;
 }
-.linkModal, .nsfwModal {
+.nowidth {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+.linkModal, .nsfwModal, .playlistModal {
   background-color: black;
   color: white;
   border: 1px solid white;
   padding: 1em;
   max-width: 80%;
   z-index: 35;
+}
+.playlistform {
+  border: 1px solid white;
+  padding: 1em;
+  background-color: rgb(62, 62, 62);
 }
 iframe
 {
@@ -251,7 +288,7 @@ max-height: 100vh !important;
 }
 .columns {
   display: grid;
-  grid-template-columns: 20% 928px auto;
+  grid-template-columns: 300px 928px auto;
   max-width: 90%;
   margin: 0 auto;
 }
@@ -319,6 +356,10 @@ max-height: 100vh !important;
   -webkit-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
 -moz-box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
 box-shadow: 0px 0px 23px 5px rgba(255,255,255,0.55);
+}
+.videodescription {
+  max-height: 50vh;
+  overflow-y: scroll;
 }
 .box {
       background-color: black;
@@ -407,6 +448,75 @@ box-shadow: inset 0px 0px 7px 1px yellow;
 .thumbnailContainer {
   background-color: black;
   padding: 2px;
+}
+.minithumb {
+  width: 100px;
+  height: 75px;
+}
+.sortbox {
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 110px calc(100% - 120px);
+}
+.caption {
+ margin-left: 5px;
+  background-color: rgb(50, 50, 50);
+
+  width: 100%;
+}
+.caption p {
+  padding: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  height: 100%;
+}
+.caption button, .caption input {
+  margin: 5px;
+}
+.desccolumns {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.right {
+  text-align: right;
+}
+.counter {
+  display: flex;
+align-items: center;
+justify-content: center;
+}
+table {
+  width: 100%;
+}
+.sortable {
+  margin: 0 auto;
+  min-width: 100%;
+}
+.sorttitle {
+  background-color: black;
+  padding: 5px;
+  border-top: 2px solid gray;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  height: 100%;
+}
+.listVideoPlaylists {
+ margin: 5px;
+ border: 1px solid white;
+}
+.listVideoPlaylists h6 {
+  background-color: black;
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+.listVideoPlaylists ul {
+  padding: 5px;
 }
 .descriptionContainer {
     padding: 5px;
@@ -537,13 +647,42 @@ textarea {
 .editcomment textarea {
   background-color: rgb(254, 255, 198);
 }
-input[type=submit] {
+button, input[type=submit] {
       background-color: rgb(80, 80, 80);
   color: white;
   border: none;
   margin: 0 auto;
   border-radius: 3px;
   padding: 5px 10px;
+}
+button:hover, input[type=submit]:hover {
+      background-color: rgb(219, 219, 219);
+  color: black;
+  border: none;
+}
+input, select {
+  background-color: white;
+color: black;
+border: none;
+margin: 0 auto;
+border-radius: 3px;
+padding: 5px 10px;
+}
+.search {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid white;
+font-variant: small-caps;
+line-height: 1em;
+}
+.highlightsearchterm {
+  font-weight: bold;
+  color: yellow;
+}
+.group {
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;
 }
 #pagination {
   margin: 0 auto;
@@ -577,6 +716,30 @@ input[type=submit] {
 @media only screen and (max-width: 500px) {
   body {
     margin-top: 5em;
-    margin-bottom: 6em;
+  }
+}
+
+
+@media only screen and (min-width: 2300px) {
+.columns {
+    grid-template-columns: 300px 1237px auto;
+}
+.box {
+  max-width: 1243px;
+}
+#allvideos {
+    grid-template-columns: 308px 308px 308px 308px;
+  }
+}
+
+@media only screen and (min-width: 3000px) {
+.columns {
+    grid-template-columns: 300px 1864px auto;
+}
+.box {
+  max-width: 1856px;
+}
+#allvideos {
+    grid-template-columns: 308px 308px 308px 308px 308px 308px;
   }
 }

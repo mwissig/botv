@@ -1,12 +1,6 @@
 <h3>Submit a video</h3>
 <%= form_tag('/videos/check/', method: 'get' ) do %>
-<div id="error_explanation">
-  <ul>
-  <% video.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
-</div>Enter the URL<br>
+Enter the URL<br>
 <small><%= link_to "List of Supported Sources", sources_path %></small><br>
     <%= url_field_tag :url, params[:url] %>
     <%= button_tag :submit do %>

@@ -88,6 +88,8 @@ class BulbsController < ApplicationController
     @bulbable = Comment.find_by_id(params[:comment_id])
   elsif params[:video_id]
     @bulbable = Video.find_by_id(params[:video_id])
+  elsif params[:playlist_id]
+    @bulbable = Playlist.find_by_id(params[:playlist_id])
   end
 end
 end

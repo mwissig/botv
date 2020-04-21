@@ -1,16 +1,15 @@
 
-<%= simple_form_for(@playlist) do |f| %>
+<%= simple_form_for(playlist, local: true) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :user_id %>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :category1 %>
-    <%= f.input :category2 %>
+    <%= f.label :category1, "Categories" %>
+    <%= f.select :category1, options_for_select(@categories), {:include_blank => 'Select A Category'}, {:required => true, :class => 'select'} %>
+    <%= f.select :category2, options_for_select(@categories), {:include_blank => 'Select A Category'} %><br>
     <%= f.input :tags %>
-    <%= f.input :plays %>
   </div>
 
   <div class="form-actions">

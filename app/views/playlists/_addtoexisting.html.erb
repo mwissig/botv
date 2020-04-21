@@ -1,0 +1,7 @@
+<div class="playlistform addTOExistingPlaylist">
+  <%= form_tag('/addtoplaylist/', method: 'get' ) do |form| %>
+  <%= hidden_field_tag :video_id, params[:video_id], value: params[:id] %>
+      <%= select_tag :playlist, options_for_select(current_user.playlists.collect { |list| [list.title, list.id]}) %>
+      <%= submit_tag "Add" %>
+  <% end %>
+</div>

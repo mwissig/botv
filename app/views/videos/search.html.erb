@@ -1,0 +1,34 @@
+<% if @videos != nil && @playlists == nil %>
+    <%= render 'videos/allvideos' %>
+    <% elsif @videos == nil && @playlists != nil %>
+<div class="box rules">
+<h3>PLAYLISTS</h3>
+<ul>
+    <% @playlists.each do |playlist| %>
+    <li><%= link_to playlist.title, playlist_path(playlist) %></li>
+    <% end %>
+  </ul>
+<%= render 'layouts/pagination', videos: @playlists %>
+</div>
+<% elsif @videos == nil && @playlists == nil && @comments != nil %>
+<div class="box rules">
+<h3>COMMENTS</h3>
+<ul>
+<% @comments.each do |comment| %>
+ <% @layer = comment %>
+  <% until @layer.parent_type == "Video" %>
+    <% @layer.parent = @layer.parent.parent %>
+  <% end %>
+<% split = comment.body.split(@terms, 2) %>
+<% split1 = split[0].reverse.truncate_words(15).truncate(75).reverse %>
+<% split2 = split[1].truncate_words(15).truncate(75) %>
+<li><%= split1 %><span class="highlightsearchterm"><%= @terms %></span><%= split2 %><br> by <%= link_to comment.user.name, user_path(comment.user) %> on <%= link_to @layer.parent.title, video_path(@layer.parent) %></li>
+<% end %>
+</ul>
+<%= render 'layouts/pagination', videos: @comments %>
+</div>
+    <% else %>
+    <div class="box rules">
+    No matches
+  </div>
+    <%end %>

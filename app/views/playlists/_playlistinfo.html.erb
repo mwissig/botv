@@ -1,0 +1,56 @@
+<div class="title full">
+<h4>
+  <%= @playlist.title %>
+</h4>
+</div>
+<div><p>A playlist by    <span class="vidsubname"><%= link_to @playlist.user.name, user_path(@playlist.user) %></span></p>
+
+<p>  <%= @playlist.description %>
+  <p>
+    <span class="category"><%= link_to @playlist.category1, category_path(:query => @playlist.category1) %></span>
+    <% if !@playlist.category2.blank? %>
+    <span class="category"><%= link_to @playlist.category2, category_path(:query => @playlist.category2) %></span>
+    <% end %>
+    </p>
+
+    <% if !@tags.nil? %>
+        <p>
+
+          <% @tags.each do |tag| %>
+          <span class="tag"> <%= link_to tag, videos_tags_path(query: tag) %> </span>
+          <% end %>
+        </p>
+        <% end %>
+
+     <div class="bulbs inline">
+<button class="notbutton"> <i class="fas fa-eye"></i> <%= @playlist.plays %> </button>
+      <% if Bulb.where("user_id = ? and bulbable_type = ? and bulbable_id = ?", current_user.id, "Playlist", @playlist.id).exists? || current_user.permission.can_bulb == false || @playlist.user == current_user %>
+
+      <%= render 'bulbs/disabled', bulbable: @playlist, color: "green" %>
+      <%= render 'bulbs/disabled', bulbable: @playlist, color: "red" %>
+      <% else %>
+<%= render 'bulbs/form', bulbable: @playlist, bulb: @bulb, color: "green" %>
+<%= render 'bulbs/form', bulbable: @playlist, bulb: @bulb, color: "red" %>
+<% end %>
+<button class="bulbs inline" onclick="showBulbers('playlist',<%= @playlist.id %>)">?</button>
+
+
+    </div>
+    <p>
+      <strong>Videos:</strong>
+      <ol>
+        <% x = 1 %>
+      <% @playlist.items.each do |item| %>
+
+       <% @video = Video.find_by_id(item.video_id) %>
+       <li> <%= link_to @video.title, playlist_path(@playlist, :page => x ) %></li>
+       <% x += 1 %>
+      <% end %>
+    </ol>
+    </p>
+<%= render 'layouts/paginationmini' %>
+  <% if @playlist.user == current_user || current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
+    <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+    <%= link_to 'All Playlists', playlists_path %>
+    <% end %>
+</div>

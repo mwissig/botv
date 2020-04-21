@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box rules">
 <h2><%= @user.name %></h2>
 
 <% if @user.permission.can_comment == false || @user.permission.can_post_video == false || @user.permission.can_bulb == false %>
@@ -24,6 +24,11 @@ Ban reason: <%= @user.permission.reason_for_ban %>
 <% @user.videos.each do |video| %>
   <%= link_to video.title, video_path(video) %><br>
 <% end %>
+  <h3>Playlists by <%= @user.name %> </h2>
+  <% @user.playlists.each do |playlist| %>
+    <%= link_to playlist.title, playlist_path(playlist) %><br>
+<% end %>
+
 <% if current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
 <div class="useradminpanel">
 Admin options:<br>

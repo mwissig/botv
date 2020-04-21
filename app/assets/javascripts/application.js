@@ -90,3 +90,34 @@ function showNsfw() {
 function dismissNsfw() {
     document.getElementById("nsfwModalContainer").classList.add("invisible")
 }
+function openPlaylistModal() {
+  document.getElementById("playlistModalContainer").classList.remove("invisible");
+}
+function closePlaylistModal() {
+    document.getElementById("playlistModalContainer").classList.add("invisible")
+}
+$(function() {
+  $('.sortable').railsSortable();
+});
+
+function toggleSearch() {
+  document.getElementById("usernameSearch").classList.toggle("invisible");
+
+}
+
+function uncheck(checkbox1, checkbox2) {
+  document.getElementById(checkbox1).checked = false;
+  document.getElementById(checkbox2).checked = false;
+  if (checkbox1 == "search_comments" || checkbox2 == "search_comments") {
+    document.getElementById("searchoptions").classList.remove("invisible");
+      document.getElementById("use_title").checked = true;
+  };
+}
+
+function chooseComments() {
+  uncheck('search_playlists', 'search_videos');
+  document.getElementById("searchoptions").classList.add("invisible");
+  document.getElementById("use_title").checked = false;
+  document.getElementById("use_tags").checked = false;
+    document.getElementById("use_description").checked = false;
+}

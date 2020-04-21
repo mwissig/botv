@@ -5,28 +5,41 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Create a username", required: true  %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter yout email address", required: true  %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", required: true  %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true  %>
+  </div>
+  <div class="checkboxes">
+    <div>
+     <%= check_box_tag :terms, autofocus: true, required: true %>
+     <%= f.label :terms, "I agree to terms and conditions" %><br>
+     <%= link_to "Privacy Policy", privacy_path %>
+   </div>
+   <div>
+     <%= check_box_tag :age_confirm, autofocus: true, required: true  %>
+     <%= f.label :age_confirm, "I am 18 or older" %>
+   </div>
+   </div>
+  <div class="field" id="captchabox">
+  <%= recaptcha_tags %>
+  </div>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
