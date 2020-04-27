@@ -1,0 +1,8 @@
+<div class="inline markread"><%= form_tag('/notifications/markread/', method: 'get' ) do %>
+
+    <%= hidden_field_tag :id, params[:id], value: notification.id %>
+
+    <%= submit_tag "Mark read" %>
+
+<% end %>
+</div>

@@ -1,0 +1,19 @@
+<div class="box rules inbox">
+  <p id="notice"><%= notice %></p>
+
+<h2>Notifications</h2>
+<% if @notifications.where(read: false).count > 0 %>
+<%= render 'notifications/markallread' %>
+<% end %>
+<ul>
+    <% @notifications.each do |notification| %>
+<% if notification.read == false %>
+        <li class="new"><%= notification.body.html_safe %><%= render 'notifications/markread', notification: notification %><hr></li>
+<% else %>
+        <li class="read"><%= notification.body.html_safe %><hr></li>
+<% end %>
+        <td><%# link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+</ul>
+<%= render 'layouts/pagination', videos: @notifications %>
+</div>

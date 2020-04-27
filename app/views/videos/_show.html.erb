@@ -37,7 +37,7 @@
   </div>
   <div>
 
-
+    <%= render 'layouts/topbar' %>
 <% if @is_playlist == true %>
 <%= render 'playlists/playlistinfo' %>
 <% end %>
@@ -84,6 +84,7 @@
 <% end %>
 <button class="bulbs inline" onclick="showBulbers('video',<%= video.id %>)">?</button>
 <%= render 'playlists/addbutton' %>
+<%= render 'flags/form', flaggable: video, flag: @flag %>
 <% if current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
 <div class="modActions"> Mod Actions:
 <%= button_to 'Delete', video, method: :delete, data: { confirm: "Are you sure you want to delete this video? All comments on this video will also be deleted.\n\n" + video.title + "" } %>

@@ -1,10 +1,10 @@
-<h3>Submit a video</h3>
+<div class="checkform"><h4>Submit a video</h4>
 <%= form_tag('/videos/check/', method: 'get' ) do %>
-Enter the URL<br>
 <small><%= link_to "List of Supported Sources", sources_path %></small><br>
-    <%= url_field_tag :url, params[:url] %>
+    <%= url_field_tag :url, params[:url], required: true, placeholder: "Enter the URL" %>
     <%= button_tag :submit do %>
     Submit
 <% end %>
 
 <% end %>
+</div>

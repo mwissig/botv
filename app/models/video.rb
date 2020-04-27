@@ -2,7 +2,8 @@ class Video < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :parent, dependent: :destroy
   has_many :bulbs, as: :bulbable, dependent: :destroy
-    validates :user_id, presence: true
+  has_many :flags, as: :flaggable, dependent: :destroy
+  validates :user_id, presence: true
   validates :id_code, presence: true
   validates :provider, presence: true
   validates :title, presence: true, length: {maximum: 255}

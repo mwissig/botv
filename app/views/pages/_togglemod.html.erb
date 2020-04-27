@@ -1,0 +1,14 @@
+<% if !user.permission.is_admin? %>
+<div class="inline"><%= form_tag('/pages/togglemod/', method: 'get' ) do %>
+
+    <%= hidden_field_tag :id, params[:id], value: user.id %>
+<% if user.permission.is_mod? %>
+    <%= submit_tag "Revoke mod powers from #{user.name}", class: "revoke modpowers" %>
+<% else %>
+    <%= submit_tag "Grant mod powers to #{user.name}", class: "grant modpowers" %>
+<% end %>
+<% end %>
+</div>
+<% else %>
+ (Admin - can not revoke mod powers)
+<% end %>

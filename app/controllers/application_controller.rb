@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
    before_action :authenticate_user!
       before_action :update_permission
 before_action :define_categories
+before_action :define_flagreasons
 
    # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -105,6 +106,28 @@ def define_categories
   "Trailers",
   "Video Games"
 ]
+end
+
+def define_flagreasons
+  @flagreasonsvideo = [
+    "Bad video URL",
+    "NSFW and not marked",
+    "Bug/formatting error",
+    "Doxxing",
+    "Threats/illegal content",
+    "Banned user alt account",
+    "Spam",
+    "Other"
+  ]
+  @flagreasons = [
+    "Bug/formatting error",
+    "Doxxing",
+    "Threats/illegal content",
+    "Banned user alt account",
+    "Spam",
+    "Other"
+  ]
+  @flag = Flag.new
 end
 
 end

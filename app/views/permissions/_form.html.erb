@@ -12,36 +12,33 @@
   <% end %>
 
   <div class="field">
-  <%= user.name %>
+  <h3><%= user.name %></h3>
   </div>
-
-  <div class="field">
+<div class="bangrid">
+<div>
     <%= form.label :can_post_video %>
     <%= form.check_box :can_post_video %>
-  </div>
-
-  <div class="field">
+</div>
+<div>
     <%= form.label :can_comment %>
     <%= form.check_box :can_comment %>
-  </div>
-
-  <div class="field">
+</div>
+<div>
     <%= form.label :can_bulb %>
     <%= form.check_box :can_bulb %>
-  </div>
+</div>
 
-  <div class="field date">
+<div>
     <%= form.input :video_ban_end, as: :date, html5: true %>
   </div>
-
-  <div class="field date">
+  <div>
     <%= form.input :comment_ban_end, as: :date, html5: true %>
-  </div>
-
-  <div class="field date">
+      </div>
+      <div>
     <%= form.input :bulb_ban_end, as: :date, html5: true %>
+      </div>
   </div>
-  <div class="field date">
+  <div class="field">
     <%= form.label :reason_for_ban %>
     <%= form.text_area :reason_for_ban %>
   </div>

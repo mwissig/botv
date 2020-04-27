@@ -1,4 +1,9 @@
+
 <div class="leftbar">
+
+    <%= render 'layouts/topbar' %>
+          <%= render 'layouts/donate' %>
+  <% if user_signed_in? %>
   <% if user_signed_in? %>
   <% if current_user.permission.can_post_video == true %>
   <%= render 'videos/checkform', video: @video %>
@@ -7,54 +12,100 @@
     You are banned from submitting videos until <%= current_user.permission.video_ban_end.strftime("%B %e, %Y") %> for:<br> <%= current_user.permission.reason_for_ban %>
   </div>
   <% end %>
+
     <%= render 'layouts/search' %>
-  <br>
-  <%= link_to "Your Profile", user_path(current_user) %>
-  <br>
-  <%= link_to "Rules", rules_path %><br>
-  <% if current_user.permission.is_mod == true %>
-  <br>You are a mod<br>
-  <%= link_to "Mod panel", mod_path %><br>
+
+<div class="leftbarlinks">
+  <%= link_to user_path(current_user), :class => 'nav-link' do %>
+<i class="fas fa-user"></i><strong> <%= current_user.name %></strong>
   <% end %>
-  <h6>Playlists</h6>
+  <%= link_to "Rules", rules_path %>
+
+  <%= link_to inbox_path do %>
+  <i class="fas fa-envelope"></i>
+  <% if current_user.notifications.where(read: false).count > 0 %>
+  <sup class="notificationcount"><%= current_user.notifications.where(read: false).count %></sup>
+  <% end %>
+  <% end %>
+
+  <% if current_user.permission.is_mod? || current_user.permission.is_admin? %>
+    <%= link_to mod_path, :class => "youmod" do %>
+    Mod panel
+      <% if Flag.where(closed: false).count > 0 %>
+        <sup class="notificationcount"><%= Flag.where(closed: false).count %></sup>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if current_user.permission.is_admin? %>
+  <%= link_to "Admin panel", admin_path, :class => "youmod" %>
+  <% end %>
+
+  <% if current_user.permission.is_horny? %>
+      <%= link_to "NSFW Videos", nsfw_path %>
+    <% end %>
+
+<%= render 'permissions/nsfwform', user: current_user %>
+<% end %>
+<% if @pagetype == "videos" %>
+<%= render 'layouts/pagination', videos: @videos %>
+<% end %>
+</div>
+  <div class="topvids">
+    <div>
+  <h6>Playlists <i class='fas fa-list'></i></h6>
   <ul>
 
-  <li><%= link_to "Newest Playlists", playlists_path %></li>
-          <li><%= link_to "Most Loved Playlists", top_playlists_loved_path %>
-              <li><%= link_to "Most Viewed Playlists", top_playlists_viewed_path %></li>
+  <li><%= link_to "Newest", playlists_path %></li>
+          <li><%= link_to top_playlists_loved_path do %>
+            Most <%= image_tag("greenbulb.png") %>
+            <% end %>
+              <li><%= link_to top_playlists_viewed_path do %>
+                Most <i class="fas fa-eye"></i>
+              <% end %>
+            </li>
         </ul>
-            <h6>Most Viewed Videos</h6>
+      </div>
+
+      <div>
+            <h6>Most <i class="fas fa-eye"></i> Videos</h6>
             <ul>
-            <li><%= link_to "Hot Videos", top_hot_path %></li>
+            <li><%= link_to "Hot", top_hot_path %></li>
             <li><%= link_to "7 Days", top_week_viewed_path %></li>
             <li><%= link_to "30 Days", top_month_viewed_path %></li>
             <li><%= link_to "All Time", top_viewed_path %></li>
           </ul>
-        <h6>Most Loved Videos</h6>
+        </div>
+
+        <div>
+        <h6>Most <%= image_tag("greenbulb.png") %> Videos</h6>
         <ul>
           <li><%= link_to "7 Days", top_week_loved_path %></li>
           <li><%= link_to "30 Days", top_month_loved_path %></li>
           <li><%= link_to "All Time", top_loved_path %></li>
         </ul>
-        <h6>Most Hated Videos</h6>
+      </div>
+
+        <div>
+
+        <h6>Most <%= image_tag("redbulb.png") %> Videos</h6>
         <ul>
           <li><%= link_to "7 Days", top_week_hated_path %></li>
           <li><%= link_to "30 Days", top_month_hated_path %></li>
           <li><%= link_to "All Time", top_hated_path %></li>
         </ul>
+      </div>
+      <div>
         <h6>Most Controversial Videos</h6>
         <ul>
           <li><%= link_to "7 Days", top_week_controversial_path %></li>
           <li><%= link_to "30 Days", top_month_controversial_path %></li>
           <li><%= link_to "All Time", top_controversial_path %></li>
         </ul>
-              <% if current_user.permission.is_horny? %>
-                  <%= link_to "NSFW Videos", nsfw_path %><br>
-                <% end %>
-            <%= render 'permissions/nsfwform', user: current_user %>
-            <% end %>
-            <% if @pagetype == "videos" %>
-            <%= render 'layouts/pagination', videos: @videos %>
-            <% end %>
+      </div>
+      </div>
 
+
+
+      <% end %>
 </div>

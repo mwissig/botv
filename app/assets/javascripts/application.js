@@ -121,3 +121,7 @@ function chooseComments() {
   document.getElementById("use_tags").checked = false;
     document.getElementById("use_description").checked = false;
 }
+
+function toggleshow(id) {
+    document.getElementById(id).classList.toggle("invisible");
+}

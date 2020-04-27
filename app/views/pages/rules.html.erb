@@ -1,37 +1,46 @@
 <div class="box rules"><p>
-<h1>Rules</h1>
-<h2>Site Functions</h2>
+<h2>Rules</h2>
+<h3>How the Site Works</h3>
 <ul>
   <li>
-All videos that are submitted are automatically approved. However, if a video recieves five red bulbs before getting a green bulb or a comment, it will be deleted.<br>
-Because of this, you can not make the first comment on your own video.<br>
-A deleted video can be submitted again and will not show up as a duplicate.
+All videos that are submitted are automatically approved. There's no hopper. However, if a video receives five red bulbs before getting a green bulb or a comment, it will be deleted.
+<li>Because this information is purged from the database, a deleted video can be submitted again and will not show up as a duplicate.
 </li>
 <li>
-  In order to expand support for video sources, it is possible to submit a link that is not a video. Please don't.
+  An algorithm attempts to detect where a video submission is from based on the URL to figure out how to best display the data. Because I can't possibly account for every <%= link_to "video source", sources_path %>, it is possible to submit URLs that don't contain videos; this is discouraged. Video URLs that are formatted in unusual ways may not work.</li>
+  <li>If a video is not working or has moved and you have a working URL, you can flag it for mods to fix.</li>
+  <li>You can also flag a video if it should be labeled NSFW and it isn't, or to alert mods to other issues. The user whose content you flag will not be automatically notified or told who flagged them, but mods will be able to see this information and contact both users and they will be notified if any action is taken in response.</li>
+</ul>
 
 
-<p>Consequences of breaking rules:
+<h3>Moderation policies</h3>
 <ul>
-<li>Serious offenses that threaten the safety of others or security of the site can be enforced with permanent or long-term bans.
+  <li><b>In the tradition of this site's predecessors, we do not moderate for content unless absolutely necessary.</b><br> We rely on the community to police itself. Discussion is preferable to punishment. Moderators will step in where that fails. Lack of moderator action on a subject does not mean we condone it, but that we do not necessarily require authority to settle things. Ideally the main role of mods here is to fix things when they break.</li>
+<li>We can respond to behavior that threatens the safety of others or security of the site with permanent or long-term bans.
 </li>
-<li>Users that need time to cool down (ex. they're spamming "kill yourself" hundreds of times) can have video posting, commenting, and bulbing privileges temporarily suspended.
+<li>Users that need time to cool down can have video posting, commenting, and bulbing privileges temporarily suspended.
 </li>
+
 <li>Users that have posted something that breaks a rule by mistake will just have their content edited (preferably, since this shows records of what was done), or deleted if necessary.
 </li>
+<li>Moderator action can be taken if necessary against users that engage in long-term patterns of abusive behavior that are harmful to the community even if they have not technically violated a rule. To be clear, is still ok to be an asshole, but we pay real money to host this web site and if we can't enjoy it anymore because of you, you're out.</li>
+</li>
+<li>
+  If you have a problem with any of this, we should discuss it, this is a new site and we're still working everything out.
+</li>
 </ul>
-</p>
+<h3>Rules </h3>
 <ol>
   <li>
-    <b>One of the categories for all NSFW videos must be NSFW.</b><br> This is what makes the NSFW filter work! Do not judge whether content is work safe based on whether you personally find it morally objectionable, but on whether it might get someone fired.
+    <b>One of the categories for all NSFW videos must be NSFW.</b><br> This is what makes the "safe mode" filter work! Do not judge whether content is work safe based on whether you personally find it morally objectionable, but on whether it might get someone fired.
   </li>
-  <li>Don't post anything that's gonna get the FBI sent to my house, even as a joke. Death threats, jokes about planning acts of violence, shit like that.
-  </li>
-  <li>
-    Don't try to destroy the site. I know my code is probably not that great. I still spent a lot of time on this thing so c'mon.
+  <li>Do not make violent threats against other people or otherwise post anything that might result in cops showing up at my house.
   </li>
   <li>
-    No doxxing-- don't share other people's personal information such as their real name, photo, address, or social media that could lead to that info, without their explicit consent (do not assume they consent to having the information shared again if it has been shared once, or if they have posted it themselves).
+    Do not intentionally break the web site. <small>(Please contact me if you accidentally break the web site so I can figure out how to fix it.)</small>
+  </li>
+  <li>
+    Do not share other users' personal information (their real name, address, social media handles, etc) or photos without their explicit and publicly-stated consent.
   </li>
   <li>
     Don't create a new account just to circumvent a ban.
@@ -40,14 +49,7 @@ A deleted video can be submitted again and will not show up as a duplicate.
 This site accepts donations from users for domain and server costs. Dontations are not bribes. No amount that you have donated entitles you to control over the site or influence over the moderators or administrators.
 </li>
 <li>
-  We have the right to delete spamming/flooding and edit or delete posts that contain personal information and threats of violence.
-</li>
-
-<li>
-  Lack of moderator response on a subject does not mean we condone that behavior. We have traditionally maintained a free speech based, hands-off approach to moderation and allowed most issues to be handled by the community. This means that people who engaged in bigoted behavior get publicly shamed, not punished. This means, if that's the kind of community you want to be a part of, it's your responsibility as a user to yell at people. However, I pay money for this site, so if someone is ruining the experience for everyone else, I will ban them.
-</li>
-<li>
-  Having said all that about free speech, your username itself can't be a slur or something along those lines. If I have to say that to you you're probably not gonna like it here but that's your choice.
+  We have the right to delete spamming/flooding and edit or delete posts that contain content that is not allowed.
 </li>
 <li>
   You can ask us to ban you if you feel like you need it. You do not have to violate a rule. You may delete your account at any time. Deleting your account will permanently delete all videos you submitted, all comments you made, and all comments others made in response to your videos and comments. There is no way to recover this data.

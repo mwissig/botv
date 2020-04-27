@@ -53,10 +53,9 @@ overflow: hidden;
   color: black !important;
 }
 body {
-  margin-top: 2.5em;
+margin: 0 auto;
   background-color: transparent;
-
-
+font-family: 'Cabin', sans-serif;
 }
 a {
   color: rgb(177, 177, 177) !important;
@@ -78,6 +77,7 @@ padding: 0 !important;
   color: black;
   justify-content: space-around !important;
 }
+
 #clip {
   max-width: 100%;
   text-align: center;
@@ -209,6 +209,9 @@ padding: 5px 5px;
   border: 1px solid white;
   margin: 5px;
 }
+.checkform {
+  margin: 5px;
+}
 .disabledButton {
 background-color: black !important;
 color: white !important;
@@ -248,10 +251,18 @@ background-color: transparent;
 #usernameSearch {
   overflow: hidden;
 }
+.flagbox {
+  border: 1px solid red;
+  padding: 5px;
+  margin: 5px;
+}
 .invisible {
   visibility: hidden;
   height: 0;
+  padding: 0;
+  margin: 0;
 }
+
 .nowidth {
   visibility: hidden;
   height: 0;
@@ -294,12 +305,101 @@ max-height: 100vh !important;
 }
 
 .leftbar {
-        background-color: rgb(133, 133, 133);
+        background-color: rgb(107, 107, 107);
     color: black;
     border-right: 2px solid black;
-    padding: 5px;
+}
+.leftbartop {
+  padding: 0.1rem 1rem;
+  font-size: .9em;
+  background-color: black !important;
+  color: black;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+    align-items: center;
+  flex-wrap: wrap;
+}
+.leftbartop a {
+
+}
+.leftbarlinks {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.leftbarlinks a {
+  background-color: white;
+    color: black !important;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: black;
+  text-align: center;
+  margin: 5px 5px;
+}
+.leftbarlinks a, .topvids li, .leftbar button {
+  /** Offset the Position **/
+  position: relative;
+  top: 0;
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  /** 3D Block Effect **/
+  box-shadow: 0 3px 0 0 #2e2e2e;
+
+  /** Make it look pretty **/
+  // display: block;
+  border: 0;
+  cursor: pointer;
 }
 
+.leftbarlinks a:active, .topvids li:active, .leftbar button:active {
+  /** Remove 3D Block Effect on Click **/
+  box-shadow: none;
+  top: 3px;
+  margin-bottom: 2px;
+}
+
+.leftbarlinks a:hover, .topvids li:hover, .leftbar button:hover {
+  opacity: 1;
+}
+
+.leftbarlinks a:active, .topvids li:active,
+.leftbarlinks a:focus, .topvids li:focus,
+.leftbar button:hover, .leftbar button:focus {
+  /** Remove Chrome's Ugly Yellow Outline **/
+  outline: 0;
+}
+.youmod {
+  background-color: rgb(255, 193, 193) !important;
+}
+.topvids div{
+  background-color: rgb(133, 133, 133);
+  margin: 5px;
+  padding: 5px 0px;
+}
+.topvids h6 {
+  text-align: center;
+  font-variant: small-caps;
+}
+.topvids div ul {
+  display: flex;
+  justify-content: space-around;
+    padding-left: 0;
+}
+.topvids div ul li {
+  list-style: none;
+  background-color: white;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: black;
+  text-align: center;
+  margin: 0 5px;
+}
+.topvids div ul li a {
+  color: black !important;
+}
 .submitform {
     background-color: rgb(133, 133, 133);
     color: black;
@@ -629,12 +729,91 @@ input {
 .comment {
   border-bottom: 1px solid gray;
 }
+.comment:target {
+   border: 3px solid #ffa !important;
+}
 .modgrid {
   // display: grid;
   // grid-template-columns: repeat(8, 1fr);
 }
 .modgrid div, .modgrid form {
   display: inline;
+}
+.mod .responseform {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+.modcomment {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid white;
+}
+.inbox ul {
+  list-style: none;
+}
+.new hr {
+  background-color: yellow;
+}
+.read hr {
+  background-color: white;
+}
+.read::before {
+  content: "\2022";
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.new::before {
+  content: "NEW";
+  color: yellow;
+  font-weight: bold;
+  display: inline-block;
+  width: 3em;
+  margin-left: -1em;
+}
+.markread input[type="submit"] {
+  padding: 2px 5px;
+  margin-left: 5px;
+  color: yellow;
+  border: 1px solid yellow;
+  background-color: black;
+}
+.markread input[type="submit"]:hover{
+  color: black;
+  border: 1px solid black;
+  background-color: yellow;
+}
+.modpowers {
+  padding: 2px 5px !important;
+  margin-left: 5px !important;
+  color: white !important;
+  border: 1px solid white !important;
+  background-color: black !important;
+}
+.modpowers:hover {
+  color: black !important;
+  border: 1px solid black !important;
+  background-color: yellow !important;
+}
+
+.grant {
+  border: 1px solid green !important;
+}
+.revoke {
+  border: 1px solid red !important;
+}
+.sendnotifs {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 5px;
+}
+.notificationcount {
+  background-color: #ffa;
+  border-radius: 50%;
+  padding: 2px;
+  margin-left: 2px;
 }
 .flag {
   color: red !important;
@@ -679,10 +858,22 @@ line-height: 1em;
   font-weight: bold;
   color: yellow;
 }
+.donate {
+  padding: 5px;
+  margin: 5px;
+  // border: 1px solid white;
+  background-color: rgb(215, 215, 215);
+  font-variant: small-caps;
+  line-height: 1.1em;
+}
 .group {
   display: flex;
   align-items: center;
   flex-wrap:wrap;
+}
+.bangrid {
+  display: grid !important;
+  grid-template-columns: 33.33% 33.33% 33.33%;
 }
 #pagination {
   margin: 0 auto;
@@ -715,7 +906,7 @@ line-height: 1em;
 
 @media only screen and (max-width: 500px) {
   body {
-    margin-top: 5em;
+    // margin-top: 5em;
   }
 }
 

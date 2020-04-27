@@ -1,0 +1,17 @@
+<% if (flag.reason == "Bad video URL" || flag.reason == "NSFW and not marked" || flag.reason == "Bug/formatting error" || flag.reason == "Spam") %>
+
+<div class="inline"><%= form_tag('flags/toggleflag/', method: 'get' ) do %>
+    <%= hidden_field_tag :id, params[:id], value: flag.id %>
+    <%= submit_tag "Close flag" %>
+<% end %>
+</div>
+
+<% elsif current_user.permission.is_admin? %>
+
+<div class="inline"><%= form_tag('flags/toggleflag/', method: 'get' ) do %>
+    <%= hidden_field_tag :id, params[:id], value: flag.id %>
+    <%= submit_tag "Close flag (admin only)" %>
+<% end %>
+</div>
+
+<% end %>

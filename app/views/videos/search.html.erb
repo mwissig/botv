@@ -1,4 +1,5 @@
 <% if @videos != nil && @playlists == nil %>
+
     <%= render 'videos/allvideos' %>
     <% elsif @videos == nil && @playlists != nil %>
 <div class="box rules">
@@ -10,19 +11,26 @@
   </ul>
 <%= render 'layouts/pagination', videos: @playlists %>
 </div>
+
 <% elsif @videos == nil && @playlists == nil && @comments != nil %>
 <div class="box rules">
 <h3>COMMENTS</h3>
 <ul>
 <% @comments.each do |comment| %>
  <% @layer = comment %>
-  <% until @layer.parent_type == "Video" %>
+  <% until @layer.parent_type == "Video" || @layer.parent_type == "Playlist"  %>
     <% @layer.parent = @layer.parent.parent %>
   <% end %>
 <% split = comment.body.split(@terms, 2) %>
 <% split1 = split[0].reverse.truncate_words(15).truncate(75).reverse %>
 <% split2 = split[1].truncate_words(15).truncate(75) %>
-<li><%= split1 %><span class="highlightsearchterm"><%= @terms %></span><%= split2 %><br> by <%= link_to comment.user.name, user_path(comment.user) %> on <%= link_to @layer.parent.title, video_path(@layer.parent) %></li>
+<li><%= split1 %><span class="highlightsearchterm"><%= @terms %></span><%= split2 %><br> by <%= link_to comment.user.name, user_path(comment.user) %> on
+  <% if @layer.parent_type == "Video" %>
+   <%= link_to @layer.parent.title, video_path(@layer.parent, anchor: "comment" + comment.id.to_s ) %>
+   <% else %>
+      <%= link_to @layer.parent.title, playlist_path(@layer.parent, anchor: "comment" + comment.id.to_s ) %>
+   <% end %>
+ </li>
 <% end %>
 </ul>
 <%= render 'layouts/pagination', videos: @comments %>

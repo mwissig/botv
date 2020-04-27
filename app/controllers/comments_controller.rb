@@ -39,6 +39,21 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       @comment.body = @comment.body + " </i></b></em></s></a></small> <i><small>(edited by #{view_context.link_to current_user.name, user_path(current_user)} " + @comment.updated_at.strftime("%l:%M%P on %B %e, %Y") + ")</i></small>"
       @comment.save!
+       @layer = @comment
+        until @layer.parent_type == "Video" || @layer.parent_type == "Playlist"
+          @layer.parent = @layer.parent.parent
+        end
+        if @layer.parent_type == "Video"
+      Notification.create(
+        user_id: @comment.user.id,
+        body: "Your comment on the video '#{view_context.link_to @layer.parent.title, video_path(@layer.parent, anchor: "comment" + @comment.id.to_s )}' was edited by a moderator."
+      )
+    else
+      Notification.create(
+        user_id: @comment.user.id,
+        body: "Your comment on the playlist '#{view_context.link_to @layer.parent.title, playlist_path(@layer.parent, anchor: "comment" + @comment.id.to_s )}' was edited by a moderator."
+      )
+    end
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)

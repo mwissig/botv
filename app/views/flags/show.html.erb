@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @flag.user_id %>
+</p>
+
+<p>
+  <strong>Flaggable:</strong>
+  <%= @flag.flaggable_id %>
+</p>
+
+<p>
+  <strong>Flaggable type:</strong>
+  <%= @flag.flaggable_type %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @flag.reason %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @flag.message %>
+</p>
+
+<%= link_to 'Edit', edit_flag_path(@flag) %> |
+<%= link_to 'Back', flags_path %>

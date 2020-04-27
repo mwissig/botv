@@ -1,8 +1,66 @@
-<div class="box">
-  Mod panel<br>
-  <% @users.each do |user| %>
-  <%= link_to user.name, user_path(user) %><hr>
+<div class="box rules mod">
+  <% if current_user.permission.is_admin == true || current_user.permission.is_mod == true %>
+  <h2>Mod panel</h2>
+<h3><%= link_to "List of Users", bans_mod_path %></h3>
+  <ul>
+<% @flags.each do |flag| %>
+<% user = User.find_by_id(flag.user_id) %>
+
+<% if flag.flaggable_type == "Comment" %>
+<% @layer = flag.flaggable %>
+ <% until @layer.parent_type == "Video" %>
+   <% @layer.parent = @layer.parent.parent %>
+ <% end %>
   <% end %>
 
-<%= link_to "Bans panel", bans_mod_path %>
+<div class="modcomment">Flag sent by <%= link_to user.name, user_path(user) %> about the
+<%= flag.flaggable_type %>
+<% if flag.flaggable_type == "Comment" %> posted by <%= link_to flag.flaggable.user.name, user_path(flag.flaggable.user) %>
+ on the <%= @layer.parent.class.name.demodulize %>
+ <% if @layer.parent.class.name.demodulize == "Video" %>
+    "   <%= link_to @layer.parent.title, video_path(@layer.parent, anchor: "comment" + flag.flaggable.id.to_s ) %>"
+    <% else %>
+    "<%= link_to @layer.parent.title, playlist_path(@layer.parent, anchor: "comment" + flag.flaggable.id.to_s ) %>"
+    <% end %>
+<% elsif flag.flaggable_type == "Playlist" %>
+"<%= link_to flag.flaggable.title, playlist_path(flag.flaggable) %>" curated by <%= link_to flag.flaggable.user.name, user_path(flag.flaggable.user) %>
+<% else %>
+"<%= link_to flag.flaggable.title, video_path(flag.flaggable) %>" posted by <%= link_to flag.flaggable.user.name, user_path(flag.flaggable.user) %>
+  <% end %>
+
+
+  <br>Flagged as <b><%= flag.reason %></b> with message: <div class="modcomment"><%= flag.message %></div>
+    <% if flag.flaggable_type == "Comment" %>
+    Body of flagged comment (no html):
+    <div class="modcomment"><%= @layer.body %></div>
+    <% end %>
+    <div class="modcomment sendnotifs">
+    <div>
+Contact Sender
+<%= render 'notifications/form', notification: @notification, user_id: user.id, flag_id: flag.id %>
+</div>
+<div>
+Contact Flagged User
+<%= render 'notifications/form', notification: @notification, user_id: flag.flaggable.user.id, flag_id: flag.id %>
+</div>
+<div>
+Discuss Issue with Mods
+<%= render 'notifications/form', notification: @notification, user_id: current_user.id, flag_id: flag.id %>
+</div>
+</div>
+Sent messages:
+<% messages = Notification.where(flag_id: flag.id) %>
+
+<ul>
+  <% messages.each do |message| %>
+<li><%= message.created_at.strftime("%D %l:%M%P") %> Sent to <%= message.user.name %>: <%= message.body.html_safe %> </li>
+<% end %>
+</ul>
+<%= render 'flags/toggleflag', flag: flag %>
+</div>
+<% end %>
+<%= render 'layouts/pagination', videos: @flags %>
+</ul>
+  <ul>
+<% end %>
 </div>

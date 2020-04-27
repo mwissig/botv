@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :stats, :bulbs]
   def show
     @user = User.find(params[:id])
   end
@@ -14,8 +14,17 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-
   end
+
+    def stats
+    end
+
+    def bulbs
+      @bulbs = @user.bulbs
+      @redbulbs = @bulbs.where(color: "red")
+      @greenbulbs = @bulbs.where(color: "green")
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

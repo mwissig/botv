@@ -1,7 +1,10 @@
-<div class="box">
+<div class="box rules">
+    <% if current_user.permission.is_admin == true || current_user.permission.is_mod == true %>
   <div class="modgrid">
 <% @users.each do |user| %>
 <%= render 'permissions/form', user: user %><hr>
 <% end %>
 </div>
+<%= render 'layouts/pagination', videos: @users %>
+<% end %>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_140850) do
+ActiveRecord::Schema.define(version: 2020_04_25_151428) do
 
   create_table "bulbs", force: :cascade do |t|
     t.integer "user_id"
@@ -30,12 +30,32 @@ ActiveRecord::Schema.define(version: 2020_04_15_140850) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "flags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "flaggable_id"
+    t.string "flaggable_type"
+    t.string "reason"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "closed", default: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "playlist_id"
     t.integer "sort", default: 1
     t.integer "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "flag_id"
+    t.boolean "read", default: false
   end
 
   create_table "permissions", force: :cascade do |t|

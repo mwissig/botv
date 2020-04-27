@@ -1,4 +1,8 @@
 <div class="box">
+    <% if current_user.permission.is_horny? %>
   <h2>NSFW</h2>
   <%= render 'videos/allvideos' %>
+  <% else %>
+  Access denied
+  <% end %>
 </div>

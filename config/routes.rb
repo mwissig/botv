@@ -2,6 +2,17 @@ Rails.application.routes.draw do
 
 
 
+  get 'flags/toggleflag'
+  get 'pages/togglemod'
+  get 'users/:id/stats' => 'users#stats'
+  get 'users/:id/bulbs' => 'users#bulbs'
+  get 'notifications/markread'
+  get 'notifications/markallread'
+  get 'notifications/tomod'
+  get 'notifications/frommod'
+  resources :notifications
+
+get 'inbox' => 'notifications#index'
 
   get 'videos/search'
   get 'contact' => 'pages#contact'
@@ -34,6 +45,7 @@ Rails.application.routes.draw do
 
   get 'rules' => 'pages#rules'
   get 'mod' => 'pages#mod'
+    get 'admin' => 'pages#admin'
   get 'bans/mod'
   get 'bans/index'
 
@@ -43,11 +55,13 @@ Rails.application.routes.draw do
     resources :comments do
       resources :comments
       resources :bulbs
+          resources :flags
     end
 
     resources :playlists do
       resources :comments
       resources :bulbs
+          resources :flags
       resources :items do
         resources :videos
       end
@@ -62,6 +76,7 @@ Rails.application.routes.draw do
     resources :videos do
       resources :comments
       resources :bulbs
+          resources :flags
     end
 
   get 'recent' => 'pages#recent'
@@ -70,12 +85,13 @@ Rails.application.routes.draw do
   resources :statuses
   root 'pages#home'
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
   resources :users do
     resources :statuses
     resources :permissions
-
+  resources :notifications
 end
 end
 

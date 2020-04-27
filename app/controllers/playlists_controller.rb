@@ -19,8 +19,12 @@ class PlaylistsController < ApplicationController
     @bulb = Bulb.new
     @comment = Comment.new
             @playlist.increment!(:plays)
+            @playlist.updated_at = DateTime.now
+            @playlist.save!
 @thisvid = Video.find_by_id((@videos.first).video_id)
 @thisvid.increment!(:plays)
+@thisvid.updated_at = DateTime.now
+@thisvid.save!
 
 @items = Item.where(video_id: @thisvid.id)
 @playlist_ids = []
@@ -53,6 +57,12 @@ end
       tags: params[:tags],
     )
     @playlist.save!
+    if @playlist.save
+    Notification.create(
+      user_id: @video.user.id,
+      body: "Your video '#{view_context.link_to @video.title, video_path(@video)}' was added to #{view_context.link_to @playlist.user.name, user_path(@playlist.user)}'s playlist '#{view_context.link_to @playlist.title, playlist_path(@playlist)}'."
+    )
+  end
     @first_item = Item.new(
       playlist_id: @playlist.id,
       video_id: @video.id
@@ -71,6 +81,12 @@ def addtoplaylist
       sort: @count + 1
     )
     @new_item.save!
+    if @new_item.save
+    Notification.create(
+      user_id: @video.user.id,
+      body: "Your video '#{view_context.link_to @video.title, video_path(@video)}' was added to #{view_context.link_to @playlist.user.name, user_path(@playlist.user)}'s playlist '#{view_context.link_to @playlist.title, playlist_path(@playlist)}'."
+    )
+  end
     redirect_to playlist_path(@playlist)
 end
 

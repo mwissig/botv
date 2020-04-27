@@ -29,6 +29,8 @@ class BulbsController < ApplicationController
     @bulb.user_id = current_user.id
     @bulb.save!
       if @bulb.save
+        @bulb.bulbable.updated_at = DateTime.now
+        @bulb.bulbable.save!
         if @bulb.bulbable_type == "Video"
           if @bulb.bulbable.comments.count == 0 && @bulb.bulbable.bulbs.where(color: "green").count == 0 && @bulb.bulbable.bulbs.where(color: "red").count >= 5
             @bulb.bulbable.destroy!

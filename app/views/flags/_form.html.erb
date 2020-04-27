@@ -1,0 +1,24 @@
+<button class="flag" onclick="toggleshow('flag<%= flaggable.class.name.demodulize %><%= flaggable.id %>')">
+   Flag <i class="fas fa-flag"></i>
+ </button>
+
+<div id="flag<%= flaggable.class.name.demodulize %><%= flaggable.id %>" class="flagbox invisible">
+<%= simple_form_for([flaggable, @flag]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+<% if flaggable.class.name.demodulize == "Video" %>
+  <% reasons = @flagreasonsvideo %>
+<% else %>
+  <% reasons = @flagreasons %>
+<% end %>
+    <%= f.select :reason, options_for_select(reasons), {:include_blank => 'Select A Reason'}, {:required => true, :class => 'select'} %>
+    <%= f.text_area :message, placeholder: "Explain and/or provide working URL" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Send to Mods" %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,12 @@
+<%= form_tag('/notifications/frommod/', method: 'get' ) do %>
+<% user = User.find_by_id(user_id) %>
+  <div class="form-inputs">
+    <%= hidden_field_tag :user_id, params[:user_id], value: user_id %>
+        <%= hidden_field_tag :flag_id, params[:flag_id], value: flag_id %>
+    <%= text_area_tag :body, params[:body], placeholder: "Your Message" %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag "Send to #{user.name}" %>
+  </div>
+<% end %>

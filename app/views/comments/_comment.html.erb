@@ -1,7 +1,7 @@
 
 <div class="commentslayer">
 
-  <div class="comment">
+  <div class="comment" id="comment<%= comment.id %>">
 <% @gb = comment.bulbs.where(color: "green").count %>
 <% @rb = comment.bulbs.where(color: "red").count %>
 
@@ -40,9 +40,11 @@
     <% end %>
     <button class="bulbs inline" onclick="showBulbers('comment',<%= comment.id %>)">?</button>
 
-    <button class="flag">
-       Flag <i class="fas fa-flag"></i>
-     </button>
+
+
+<%= render 'flags/form', flaggable: comment, flag: @flag %>
+
+
     <% if current_user.permission.can_comment == true %>
 
 

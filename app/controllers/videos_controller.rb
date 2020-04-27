@@ -15,6 +15,8 @@ class VideosController < ApplicationController
         @bulb = Bulb.new
         @tags = @video.tags.split(",")
         @video.increment!(:plays)
+        @video.updated_at = DateTime.now
+        @video.save!
         @fullscreen = true
         @items = Item.where(video_id: @video.id)
         @playlist_ids = []
@@ -224,7 +226,7 @@ if @use_name == nil && @search_comments == "on"
 elsif @search_playlists == "on"
   @playlists = Playlist.where(id: @matches.map(&:id)).order("created_at ASC").paginate(:page => params[:page], :per_page => 24)
 elsif @search_comments == "on"
-  @comments = Comment.where(id: @matches.map(&:id)).order("created_at ASC").paginate(:page => params[:page], :per_page => 5)
+  @comments = Comment.where(id: @matches.map(&:id)).order("created_at ASC").paginate(:page => params[:page], :per_page => 20)
 else
   @videos = nil
 end
@@ -374,7 +376,7 @@ end
       @video = Video.new(video_params)
 
       respond_to do |format|
-        if verify_recaptcha(model: @uvideo) && @video.save
+        if @video.save
           format.html { redirect_to @video, notice: 'Video was successfully created.' }
           format.json { render :show, status: :created, location: @video }
         else
@@ -408,6 +410,16 @@ end
   # DELETE /videos/1.json
   def destroy
     @video.destroy
+    if @video.destroy
+      @items = Item.where(video_id: @video.id)
+      @items.each do |item|
+          item.destroy
+          Notification.create(
+            user_id: item.playlist.user.id,
+            body: "The video '#{@video.title}' in your playlist #{view_context.link_to item.playlist.title, playlist_path(item.playlist)} was deleted."
+          )
+      end
+    end
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }

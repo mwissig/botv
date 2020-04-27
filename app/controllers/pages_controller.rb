@@ -17,6 +17,8 @@ def privacy
 end
 
   def mod
+    @flags = Flag.where(closed: false).order("created_at ASC").paginate(:page => params[:page], :per_page => 5)
+    @notification = Notification.new
       @users = User.all.order("name ASC")
       @users.each do |user|
         if user.permission == nil
@@ -26,6 +28,30 @@ end
           @permission.save!
         end
   end
+  end
+
+  def togglemod
+    if current_user.permission.is_admin?
+
+    @user = User.find_by_id(params[:id])
+    @user.permission.toggle(:is_mod).save
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to admin_url, notice: "#{@user.name} mod status changed" }
+        format.json { render :admin, status: :created, location: @user }
+      else
+        format.html { render :admin }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+  end
+
+  def admin
+    @users = User.all.order("name ASC").paginate(:page => params[:page], :per_page => 25)
+     @mods = User.joins(:permission).where(permissions: {is_mod: true})
+     @admins = User.joins(:permission).where(permissions: {is_admin: true})
   end
 
   def sources

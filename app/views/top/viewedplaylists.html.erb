@@ -1,2 +1,40 @@
-<h1>Top#viewedplaylists</h1>
-<p>Find me in app/views/top/viewedplaylists.html.erb</p>
+<p id="notice"><%= notice %></p>
+<div class="box rules">
+<h1>Playlists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Category1</th>
+      <th>Category2</th>
+      <th>Tags</th>
+      <th>Plays</th>
+            <th>Videos</th>
+                        <th>Green Bulbs</th>
+                                                <th>Red Bulbs</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @playlists.each do |playlist| %>
+      <tr>
+        <td><%= playlist.user_id %></td>
+        <td><%= link_to playlist.title, playlist_path(playlist) %></td>
+        <td><%= playlist.description %></td>
+        <td><%= playlist.category1 %></td>
+        <td><%= playlist.category2 %></td>
+        <td><%= playlist.tags %></td>
+        <td><%= playlist.plays %></td>
+                <td><%= playlist.items.count %></td>
+                <td><%= playlist.bulbs.where(color: "green").count %></td>
+              <td><%= playlist.bulbs.where(color: "red").count %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
