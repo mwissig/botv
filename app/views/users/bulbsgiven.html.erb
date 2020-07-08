@@ -1,0 +1,36 @@
+<div class="box rules">
+<h2>Bulbs given by <%= @user.name %></h2>
+<%= column_chart [
+  { name: "green", data: @greenbulbs.group(:bulbable_type).count },
+  { name: "red", data: @redbulbs.group(:bulbable_type).count }
+],
+    colors: [ '#00ff0a', '#ff0000' ],
+    height: '200px' %>
+<div class="bulbslist">
+  <% @bulbs.each do |bulb| %>
+    <div><%= image_tag(bulb.color + "bulb.png") %></div>
+  <% if bulb.bulbable_type = "Video" %>
+  <% @source = Video.find_by_id(bulb.bulbable_id) %>
+  <% elsif bulb.bulbable_type = "Playlist" %>
+    <% @source = Playlist.find_by_id(bulb.bulbable_id) %>
+  <% else %>
+        <% @source = Comment.find_by_id(bulb.bulbable_id) %>
+         <% until @layer.parent_type == "Video" || @layer.parent_type == "Playlist" %>
+           <% @layer.parent = @layer.parent.parent %>
+         <% end %>
+  <% end %>
+  <div><%= @source.user.name %></div>
+  <% if bulb.bulbable_type != "Comment" %>
+    <div><%= @source.title %></div>
+    <% else %>
+    <div>Comment</div>
+    <% end %>
+
+
+
+    <div><%= bulb.created_at.strftime("%D, %l:%M%P") %></div>
+  <%end%>
+</div>
+
+
+</div>

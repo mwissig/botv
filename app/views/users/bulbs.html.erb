@@ -1,5 +1,24 @@
 <div class="box rules">
-<% @bulbs.each do |bulb| %>
-<%= bulb.id %> <%= bulb.color %> <%= bulb.bulbable_type %> <%= bulb.bulbable_id %><br>
+  <% if !@user.bulbs.first.nil? %>
+<h2>Bulbs Given by <%= @user.name %></h2>
+<%= pie_chart(@given_bulbs_pie, donut: true, colors: [ '#00ff0a', '#ff0000' ], height: "150px", width: "300px", legend: "right", library: { pieSliceText: 'value' }) %>
+<%= line_chart(@given_bulbs,
+colors: [ '#00ff0a', '#ff0000' ]) %>
+<%= link_to "List of all bulbs given ", user_path(@user) + "/bulbs/given" %>
 <% end %>
+
+<% if @display_to_user == true %>
+
+<%= pie_chart(@bulbs_to_user_pie, donut: true, colors: [ '#00ff0a', '#ff0000' ], height: "150px", width: "300px", legend: "right", library: { pieSliceText: 'value' }) %>
+<h2>Bulbs Given to <%= @user.name %></h2>
+<%= line_chart(@recieved_bulbs,
+colors: [ '#00ff0a', '#ff0000' ]) %>
+<% @bulbs.each do |bulb| %>
+
+<% end %>
+<%# bulb.id %> <%# bulb.color %> <%# bulb.bulbable_type %> <%# bulb.bulbable_id %>
+<!-- <br> -->
+List of all bulbs received
+<% end %>
+
 </div>

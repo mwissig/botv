@@ -20,6 +20,8 @@
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-datepicker
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 var saved_ids = [];

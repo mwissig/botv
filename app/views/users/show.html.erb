@@ -18,16 +18,58 @@ Ban reason: <%= @user.permission.reason_for_ban %>
 </p>
 </div>
 <% end %>
-
-
-<h3>Videos submitted by <%= @user.name %> </h2>
-<% @user.videos.each do |video| %>
-  <%= link_to video.title, video_path(video) %><br>
+<h3><small><%= link_to "Bulb stats", user_bulbs_path(@user) %></small></h3>
+<div class="bulbtable">
+Total bulbs:
+<div class="bulboutergrid">
+  <div>Given
+    <div class="bulbinnergrid">
+          <div>
+            <%= image_tag("greenbulb.png") %> <%= @user.bulbs.where(color: "green").count %>
+          </div>
+          <div>
+            <%= image_tag("redbulb.png") %> <%= @user.bulbs.where(color: "red").count %>
+          </div>
+    </div>
+  </div>
+    <% if @bulbs_to_user == 0 %>
+  <div>Recieved
+    <div class="bulbinnergrid">
+          <div>
+          <%= image_tag("greenbulb.png") %> 0
+          </div>
+          <div>
+          <%= image_tag("redbulb.png") %> 0
+          </div>
+    </div>
+  </div>
+    <% else %>
+      <div>Received
+    <div class="bulbinnergrid">
+          <div>
+            <%= image_tag("greenbulb.png") %> <%= @bulbs_to_user.where(color: "green").count %>
+          </div>
+          <div>
+          <%= image_tag("redbulb.png") %> <%= @bulbs_to_user.where(color: "red").count %>
+          </div>
+    </div>
+</div>
 <% end %>
+</div>
+</div>
+<h3><small>Videos submitted by <%= @user.name %> </small></h2>
+  <ul>
+<% @videos.each do |video| %>
+<li>  <%= link_to video.title, video_path(video) %></li>
+<% end %>
+</ul>
+<%= link_to "More...", user_path(@user) + "/videos" %>
+
   <h3>Playlists by <%= @user.name %> </h2>
   <% @user.playlists.each do |playlist| %>
     <%= link_to playlist.title, playlist_path(playlist) %><br>
 <% end %>
+<%= link_to "More...", user_path(@user) + "/playlists" %>
 
 <% if current_user.permission.is_mod == true || current_user.permission.is_admin == true %>
 <div class="useradminpanel">
@@ -52,9 +94,9 @@ Ban or suspend user:
 <%= render 'permissions/form', user: @user %>
 </div>
 
-Edit recent comments:
+10 most recent comments:
 <div class="recentcomments">
-  <% @user.comments.order("created_at DESC").limit(20).each do |comment| %>
+  <% @user.comments.order("created_at DESC").limit(10).each do |comment| %>
    <% @layer = comment %>
     <% until @layer.parent_type == "Video" %>
       <% @layer.parent = @layer.parent.parent %>

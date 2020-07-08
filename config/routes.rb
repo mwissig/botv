@@ -2,10 +2,21 @@ Rails.application.routes.draw do
 
 
 
+
+
   get 'flags/toggleflag'
   get 'pages/togglemod'
+
+
+
+  get 'users/:id/videos' => 'users#videos'
+  get 'users/:id/playlists' => 'users#playlists'
+  get 'users/:id/comments' => 'users#comments'
   get 'users/:id/stats' => 'users#stats'
   get 'users/:id/bulbs' => 'users#bulbs'
+  get 'users/:id/bulbs/given' => 'users#bulbsgiven'
+  get 'users/:id/bulbs/received' => 'users#bulbstaken'
+
   get 'notifications/markread'
   get 'notifications/markallread'
   get 'notifications/tomod'
@@ -92,6 +103,7 @@ get 'inbox' => 'notifications#index'
     resources :statuses
     resources :permissions
   resources :notifications
+  resources :bulbs
 end
 end
 

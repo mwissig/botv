@@ -875,6 +875,28 @@ line-height: 1em;
   display: grid !important;
   grid-template-columns: 33.33% 33.33% 33.33%;
 }
+.bulbtable {
+  margin: 0 auto;
+  width: 200px;
+}
+.bulboutergrid {
+  display: grid;
+  grid-template-columns: 100px 100px;
+}
+.bulbinnergrid:first-child {
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+}
+.bulbinnergrid {
+  display: grid;
+  grid-template-columns: 50px 50px;
+  padding: 5px;
+}
+.bulbslist {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 #pagination {
   margin: 0 auto;
   background: transparent;
