@@ -4,19 +4,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @comments = @user.comments.order("created_at DESC").first(10)
     @array = []
-    @videos = @user.videos.each do |parent|
-      @array << parent.bulbs
+    @videos = @user.videos.each do |item|
+      @array << item.bulbs
     end
 
-    @comments = @user.comments.each do |parent|
-      @array << parent.bulbs
+    @comments = @user.comments.each do |item|
+      @array << item.bulbs
     end
 
-    @playlists = @user.playlists.each do |parent|
-      @array << parent.bulbs
+    @playlists = @user.playlists.each do |item|
+      @array << item.bulbs
     end
-if !@array[0].nil?
-@bulbs_to_user = Bulb.where(id: @array[0].map(&:id))
+    @array.flatten!
+if !@array.nil?
+@bulbs_to_user = Bulb.where(id: @array.map(&:id))
 else
   @bulbs_to_user = 0
 end
@@ -79,8 +80,10 @@ end
       @playlists = @user.playlists.each do |item|
         @array << item.bulbs
       end
-if !@array[0].nil?
-@bulbs_to_user = Bulb.where(id: @array[0].map(&:id))
+
+      @array.flatten!
+if !@array.nil?
+@bulbs_to_user = Bulb.where(id: @array.map(&:id))
 @display_to_user = true
       @bulbs_to_user_pie = @bulbs_to_user.group(:color).count
 else
