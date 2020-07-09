@@ -68,16 +68,16 @@ end
       @given_bulbs_pie = @bulbs.group(:color).count
 
       @array = []
-      @videos = @user.videos.each do |parent|
-        @array << parent.bulbs
+      @videos = @user.videos.each do |item|
+        @array << item.bulbs
       end
 
-      @comments = @user.comments.each do |parent|
-        @array << parent.bulbs
+      @comments = @user.comments.each do |item|
+        @array << item.bulbs
       end
 
-      @playlists = @user.playlists.each do |parent|
-        @array << parent.bulbs
+      @playlists = @user.playlists.each do |item|
+        @array << item.bulbs
       end
 if !@array[0].nil?
 @bulbs_to_user = Bulb.where(id: @array[0].map(&:id))
