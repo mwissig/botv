@@ -18,10 +18,10 @@
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
 //= require activestorage
-//= require turbolinks
 //= require bootstrap-datepicker
 //= require chartkick
 //= require Chart.bundle
+//= require turbolinks
 //= require_tree .
 
 var saved_ids = [];
