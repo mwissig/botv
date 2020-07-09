@@ -64,7 +64,7 @@ end
       @greenbulbs = @bulbs.where(color: "green")
       all_color_values = Bulb.order(:color).pluck(:color).uniq
       @given_bulbs = all_color_values.map do |color|
-        { name: color, data: @bulbs.where(color: color).group_by_week(:created_at).count }
+        { name: color, data: @bulbs.where(color: color).group_by_day(:created_at).count }
       end
       @given_bulbs_pie = @bulbs.group(:color).count
 
@@ -91,7 +91,7 @@ else
 @display_to_user = false
 end
       @recieved_bulbs = all_color_values.map do |color|
-        { name: color, data: @bulbs_to_user.where(color: color).group_by_week(:created_at).count }
+        { name: color, data: @bulbs_to_user.where(color: color).group_by_day(:created_at).count }
       end
 
 
