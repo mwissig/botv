@@ -33,6 +33,7 @@ task :delete_playlist_entries => :environment do
 Item.all.each do |item|
   if Video.where(id: item.video_id).empty?
     p item
+    item.destroy
   end
 end
   puts "Entries deleted."
