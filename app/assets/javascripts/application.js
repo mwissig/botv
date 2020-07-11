@@ -135,8 +135,8 @@ function toggleMenu() {
   var search = document.getElementById("search");
   var leftbarlinks = document.getElementById("leftbarlinks");
   var topvids = document.getElementById("topvids");
-  if (menuSpan.innerHTML == `<i class="fas fa-bars"></i>`) {
-    menuSpan.innerHTML = `<i class="fas fa-times"></i>`;
+  if (menuSpan.innerHTML == "<i class=\"fas fa-bars\"></i>") {
+    menuSpan.innerHTML = "<i class=\"fas fa-times\"></i>";
     menubar.classList.add("mobilenavexpand");
     donate.classList.add("submobilenavexpand");
     checkform.classList.add("submobilenavexpand");
@@ -145,7 +145,7 @@ function toggleMenu() {
     topvids.classList.add("submobilenavexpand");
   }
     else {
-      menuSpan.innerHTML = `<i class="fas fa-bars"></i>`;
+      menuSpan.innerHTML = "<i class=\"fas fa-bars\"></i>";
       menubar.classList.remove("mobilenavexpand");
       donate.classList.remove("submobilenavexpand");
       checkform.classList.remove("submobilenavexpand");
