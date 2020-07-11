@@ -992,6 +992,32 @@ line-height: 1em;
       height: 64vw;
     margin: 0 auto;
     }
+    .leftbartop {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      // width: 100vh;
+    }
+
+    .vidplayergrid {
+      grid-template-columns: 100%;
+      grid-template-rows: auto auto;
+      max-width: 100%;
+      margin: 0 auto;
+      min-height: calc(50vh - 5em);
+      max-height: 100vh;
+      position:relative;
+      top: 0;
+    }
+    .vidplayergrid div:nth-child(2) {
+          background-color: rgb(133, 133, 133);
+          order: 1;
+height: auto;
+    }
+    .vidplayergrid p {
+        padding: .5em;
+    }
+
 }
 
 

@@ -61,7 +61,7 @@
 
     </div>
 <p>
-<%= sanitize link_hashtags(comment.body), tags: %w(strong em a b i s small), attributes: %w(href) %>
+<%= simple_format sanitize link_hashtags(comment.body), tags: %w(strong em a b i s small), attributes: %w(href) %>
 
 </p>
 

@@ -413,7 +413,7 @@ end
     if @video.destroy
       @items = Item.where(video_id: @video.id)
       @items.each do |item|
-          item.destroy
+          item.destroy!
           Notification.create(
             user_id: item.playlist.user.id,
             body: "The video '#{@video.title}' in your playlist #{view_context.link_to item.playlist.title, playlist_path(item.playlist)} was deleted."
