@@ -17,7 +17,7 @@ task :delete_dupe_bulbs => :environment do
         @next = @mybulbs.find_by_id(@nextid)
         if bulb.bulbable_type == @next.bulbable_type && bulb.bulbable_id == @next.bulbable_id && bulb.user_id == @next.user_id
           @extrabulbs << @next
-          # @next.destroy
+          @next.destroy
         end
       end
     end
