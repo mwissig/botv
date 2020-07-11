@@ -13,7 +13,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery_ujs
 //= require rails-ujs
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
@@ -21,7 +20,7 @@
 //= require bootstrap-datepicker
 //= require chartkick
 //= require Chart.bundle
-//= require turbolinks
+// = require turbolinks
 //= require_tree .
 
 var saved_ids = [];
@@ -126,4 +125,32 @@ function chooseComments() {
 
 function toggleshow(id) {
     document.getElementById(id).classList.toggle("invisible");
+}
+
+function toggleMenu() {
+  var menuSpan = document.getElementById("mobilemenubars");
+  var menubar = document.getElementById("leftbar");
+  var donate = document.getElementById("donate");
+  var checkform = document.getElementById("checkform");
+  var search = document.getElementById("search");
+  var leftbarlinks = document.getElementById("leftbarlinks");
+  var topvids = document.getElementById("topvids");
+  if (menuSpan.innerHTML == `<i class="fas fa-bars"></i>`) {
+    menuSpan.innerHTML = `<i class="fas fa-times"></i>`;
+    menubar.classList.add("mobilenavexpand");
+    donate.classList.add("submobilenavexpand");
+    checkform.classList.add("submobilenavexpand");
+    search.classList.add("submobilenavexpand");
+    leftbarlinks.classList.add("submobilenavexpand");
+    topvids.classList.add("submobilenavexpand");
+  }
+    else {
+      menuSpan.innerHTML = `<i class="fas fa-bars"></i>`;
+      menubar.classList.remove("mobilenavexpand");
+      donate.classList.remove("submobilenavexpand");
+      checkform.classList.remove("submobilenavexpand");
+      search.classList.remove("submobilenavexpand");
+      leftbarlinks.classList.remove("submobilenavexpand");
+      topvids.classList.remove("submobilenavexpand");
+    };
 }

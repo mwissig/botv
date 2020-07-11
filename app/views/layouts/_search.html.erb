@@ -1,4 +1,4 @@
-<div class="search">
+<div class="search" id="search">
   <h4>Search</h4>
 <%= form_tag('/videos/search/', method: 'get' ) do %>
     <%= text_field_tag :terms, params[:terms], placeholder: "Search terms" %>

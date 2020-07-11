@@ -1,5 +1,5 @@
 
-<div class="leftbar">
+<div class="leftbar" id="leftbar">
 
     <%= render 'layouts/topbar' %>
           <%= render 'layouts/donate' %>
@@ -15,7 +15,7 @@
 
     <%= render 'layouts/search' %>
 
-<div class="leftbarlinks">
+<div class="leftbarlinks" id="leftbarlinks">
   <%= link_to user_path(current_user), :class => 'nav-link' do %>
 <i class="fas fa-user"></i><strong> <%= current_user.name %></strong>
   <% end %>
@@ -51,7 +51,7 @@
 <%= render 'layouts/pagination', videos: @videos %>
 <% end %>
 </div>
-  <div class="topvids">
+  <div class="topvids" id="topvids">
     <div>
   <h6>Playlists <i class='fas fa-list'></i></h6>
   <ul>
