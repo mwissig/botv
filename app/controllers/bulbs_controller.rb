@@ -27,23 +27,25 @@ class BulbsController < ApplicationController
   def create
     @bulb = @bulbable.bulbs.new bulb_params
     @bulb.user_id = current_user.id
-    @bulb.save!
-      if @bulb.save
-        @bulb.bulbable.updated_at = DateTime.now
-        @bulb.bulbable.save!
-        if @bulb.bulbable_type == "Video"
-          if @bulb.bulbable.comments.count == 0 && @bulb.bulbable.bulbs.where(color: "green").count == 0 && @bulb.bulbable.bulbs.where(color: "red").count >= 5
-            @bulb.bulbable.destroy!
-            respond_to do |format|
-              format.html { redirect_to bulbs_url, notice: 'Bulb was successfully destroyed.' }
-              format.js   { render :js => "alert('Your vote delete the video: #{@bulb.bulbable.title}')" }
+      if @bulbable.bulbs.find_by(user_id: current_user.id).nil?
+      @bulb.save!
+        if @bulb.save
+          @bulb.bulbable.updated_at = DateTime.now
+          @bulb.bulbable.save!
+          if @bulb.bulbable_type == "Video"
+            if @bulb.bulbable.comments.count == 0 && @bulb.bulbable.bulbs.where(color: "green").count == 0 && @bulb.bulbable.bulbs.where(color: "red").count >= 5
+              @bulb.bulbable.destroy!
+              respond_to do |format|
+                format.html { redirect_to bulbs_url, notice: 'Bulb was successfully destroyed.' }
+                format.js   { render :js => "alert('Your vote delete the video: #{@bulb.bulbable.title}')" }
+              end
             end
           end
-        end
-    end
-    respond_to do |format|
-      format.html { redirect_to bulbs_url, notice: 'Bulbed' }
-      format.json { head :no_content }
+      end
+      respond_to do |format|
+        format.html { redirect_to bulbs_url, notice: 'Bulbed' }
+        format.json { head :no_content }
+      end
     end
 
 
