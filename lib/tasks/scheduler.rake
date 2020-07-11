@@ -31,7 +31,7 @@ desc "Deletes playlist entries with no video"
 task :delete_playlist_entries => :environment do
   puts "Deleting playlist entries that have no corresponding video"
 Item.all.each do |item|
-  if Video.find(item.video_id).nil?
+  if Video.where(id: item.video_id).empty?
     p item
   end
 end
