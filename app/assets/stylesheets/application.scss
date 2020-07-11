@@ -952,6 +952,7 @@ line-height: 1em;
     position: fixed;
         z-index: 1000;
     top: 0;
+      transition: height .5s;
   }
 
 
