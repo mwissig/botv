@@ -1009,8 +1009,11 @@ line-height: 1em;
       position:relative;
       top: 0;
     }
+    #iframecontainer {
+      height: auto;
+      min-height: 60vw;
+    }
     .vidplayergrid div:nth-child(2) {
-          background-color: rgb(133, 133, 133);
           order: 1;
 height: auto;
     }
