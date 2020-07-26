@@ -987,6 +987,13 @@ line-height: 1em;
   #allvideos {
       grid-template-columns: 100%;
     }
+    .sortbox .thumb {
+      width: 32vw;
+      height: 24vw;
+    }
+    .sorttitle {
+      height: auto;
+    }
     .thumb, .thumbred, .thumbgreen, .thumbyellow {
       width: 96vw;
       height: 64vw;
@@ -1021,6 +1028,12 @@ height: auto;
         padding: .5em;
     }
 
+form {
+  max-width: 95vw !important;
+}
+input {
+  max-width: 95vw !important;
+}
 }
 
 
