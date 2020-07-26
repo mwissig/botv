@@ -38,3 +38,12 @@ Item.all.each do |item|
 end
   puts "Entries deleted."
 end
+
+desc "Delete notifications"
+task :delete_all_notifications => :environment do
+  puts "Deleting all notifications"
+Notification.all.each do |note|
+    note.destroy
+end
+  puts "Notifications deleted."
+end

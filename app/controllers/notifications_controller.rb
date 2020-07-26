@@ -25,9 +25,20 @@ def frommod
   if params[:user_id] != current_user.id.to_s
     @notification = Notification.create(
       user_id: params[:user_id],
-      body: "The mod #{current_user.name} sent you a message: #{params[:body]} <br> #{view_context.render 'notifications/formresponse', notification: @notification, user_id: current_user.id, flag_id: params[:flag_id]}",
+      body: "",
       flag_id: params[:flag_id]
     )
+    @recipient = User.find_by_id(@notification.user_id)
+    @this_issue = @recipient.notifications.where(flag_id: @notification.flag_id)
+    @this_issue.each do |note|
+      p note
+      p "---------------------------"
+      @splitnote = note.body.split("<br> <div class=\"responseform\"")
+      note.body = @splitnote[0]
+      note.save!
+    end
+    @notification.body = "The mod #{current_user.name} sent you a message: #{params[:body]} <br> #{view_context.render 'notifications/formresponse', notification: @notification, user_id: current_user.id, flag_id: params[:flag_id]}"
+    @notification.save!
   else
     @notification = Notification.create(
       user_id: params[:user_id],

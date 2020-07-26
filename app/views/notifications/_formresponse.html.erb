@@ -1,4 +1,4 @@
-<div class="responseform"><%= form_tag('/notifications/tomod/', method: 'get' ) do %>
+<div class="responseform" id="responseform<%= notification.id %>"><%= form_tag('/notifications/tomod/', method: 'get' ) do %>
 <% user = User.find_by_id(user_id) %>
   <div class="form-inputs">
     <%= hidden_field_tag :user_id, params[:user_id], value: user_id %>
