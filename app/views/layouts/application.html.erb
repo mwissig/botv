@@ -23,11 +23,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Karla&display=swap" rel="stylesheet">
 <%= javascript_include_tag Ckeditor.cdn_url %>
 <%= javascript_include_tag "//www.google.com/jsapi" %>
-<%= javascript_include_tag "application", "chartkick" %>.
+<%= javascript_include_tag "application", "chartkick" %>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
   </head>
 
   <body>
-
+<script src="jquery.ui.touch-punch.js"></script>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
