@@ -7,8 +7,8 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.label :category1, "Categories" %>
-    <%= f.select :category1, options_for_select(@categories), {:include_blank => 'Select A Category'}, {:required => true, :class => 'select'} %>
-    <%= f.select :category2, options_for_select(@categories), {:include_blank => 'Select A Category'} %><br>
+    <%= f.select :category1, options_for_select(@categories, f.object.category1 || playlist.category1), {:include_blank => 'Select A Category'}, {:required => true, :class => 'select'} %>
+    <%= f.select :category2, options_for_select(@categories, f.object.category2 || playlist.category2), {:include_blank => 'Select A Category'} %><br>
     <%= f.input :tags %>
   </div>
 
