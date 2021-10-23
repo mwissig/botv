@@ -1,4 +1,6 @@
 
 <div id="pagination">
+  <% if logged_in? %>
 <%= will_paginate videos %>
+<% end %>
 </div>
