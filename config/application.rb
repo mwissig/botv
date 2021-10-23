@@ -18,8 +18,4 @@ module Borona
   end
 end
 
-Raven.configure do |config|
-  config.dsn = 'https://12a2d39b955948beb99e240bb3b758ac:a2b9a133798d46e9bf059bf53952b31b@o225165.ingest.sentry.io/5199199'
-end
-
 VideoInfo.provider_api_keys = { youtube: ENV['youtube_key'], vimeo: ENV['vimeo_key'] }
